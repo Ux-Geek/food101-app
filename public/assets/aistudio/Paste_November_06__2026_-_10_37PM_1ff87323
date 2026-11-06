@@ -1,0 +1,1346 @@
+# FOOD101 — Complete Product Experience, UX Architecture & Prototype Specification
+
+PRODUCT DESIGN DOCUMENT · V1.0 · MOBILE FIRST · NIGERIA
+
+Food101 should feel like a food delivery app that has removed everything unnecessary between “I'm hungry” and “Food is on its way.”
+
+The screenshot you've provided is the foundation. We're retaining its visual identity: generous white space, large food photography, understated typography, soft-grey containers, pill-shaped controls, horizontal scrolling and that distinctive electric-green delivery tracker.
+
+But the experience needs more discipline. Right now, the reference has a few issues: unclear navigation, an oversized tracking card, a banner without a defined purpose, inconsistent pricing and rating placement, and insufficient distinction between restaurants and individual dishes.
+
+The redesign should solve those problems without making the interface busier.
+
+## 1. The product architecture
+
+The primary journey should take approximately 4–6 meaningful decisions for a returning customer with a saved address and payment method.
+
+PRIMARY CUSTOMER JOURNEY
+
+Home
+
+Discover food, restaurants and offers
+
+Restaurant
+
+Browse a menu
+
+Dish
+
+Customise and add
+
+Basket
+
+Review items and costs
+
+Checkout & payment
+
+Address, delivery, payment and confirmation
+
+Live order tracking
+
+Preparation → Pickup → Delivery → Complete
+
+The user must also be able to enter this journey through search, favourites, past orders, recommendations, restaurant promotions or a direct dish link.
+
+### Navigation architecture
+
+Keep the bottom navigation to four destinations, not five. Basket and tracking are contextual actions, not permanent navigation destinations.
+
+Home
+
+Explore
+
+AI
+
+Account
+
+- Home: personalised food discovery, featured dishes, offers and active order status.
+- Explore: restaurants, cuisine categories, filters and search results.
+- AI: conversational food discovery, recommendations and assisted basket building.
+- Account: orders, addresses, payments, favourites, support and preferences.
+
+The basket appears as a floating contextual bar whenever it contains items. Tracking is accessed through the active-order card, order confirmation or order history.
+
+# 2. Design system — Food101
+
+## 2.1 Visual direction
+
+Editorial food photography meets clean, utility-first mobile commerce. Think spacious, calm, responsive and exceptionally legible.
+
+[Premium Nigerian Dining & African Cuisine | Zion Kitchen](https://images.openai.com/static-rsc-4/vq4aK4VI1b_WCC7OldzzZNGszqkTiusPp-r5HTllOzbBZ204hyfHyiz7K5VBn04fpoSeKVrshBo1o48mkpkDvVeFcrazltilaomG-YCW3nwuN7x7HHa9ZFCVg6ai41wa_Ga7C3FN_nApn4fJGFyc57P78hswcTisz6Aw_VGdPzs?purpose=inline)
+
+Food photography
+
+Close crops, authentic meals, rich contrast
+
+[Home & Overview Page - Food Delivery Mobile App by Saimun Jubayer Shoyeb on Dribbble](https://images.openai.com/static-rsc-4/vV2JUMu0CWCPggIDZqkhF5Qa0r59ohaddpOW0wGhwtauJSt3bF3_pUoDQev6sP4Cwn5_cvIe4I-x5X84hULHP0gi3WjUSoQqwD7RO9OJzYeqY6szC5WVMkUIQ4hMgbIQBe6GIL3qn9NeOSF3aA9lH78fumkEK7N4DSQVZtE_wfc?purpose=inline)
+
+Interface aesthetic
+
+White canvas, gentle grey, large radii
+
+## 2.2 Colour system
+
+The screenshot's fluorescent green should not become the colour of every button. It is an operational colour for active delivery progress. Orange is the interaction accent; black is the primary action colour.
+
+Canvas
+
+\#FFFFFF
+
+Surface
+
+\#F6F6F6
+
+Ink
+
+\#171717
+
+Accent
+
+\#FF641B
+
+Live
+
+\#12E600
+
+Border
+
+\#E8E8E8
+
+Muted
+
+\#858585
+
+Error
+
+\#D92D20
+
+| Token           | Specification |
+| --------------- | ------------- |
+| Primary text    | `#171717`     |
+| Secondary text  | `#626262`     |
+| Disabled text   | `#999999`     |
+| Orange          | `#FF641B`     |
+| Active delivery | `#12E600`     |
+| App background  | `#FFFFFF`     |
+| Subtle surface  | `#F6F6F6`     |
+| Divider         | `#E8E8E8`     |
+| Error           | `#D92D20`     |
+
+The vivid green must always have dark text for readability. Orange on white should not be used for small body text without sufficient contrast.
+
+## 2.3 Typography
+
+Use Inter throughout, with a small number of weights.
+
+| Element         | Size / line-height | Weight |
+| --------------- | ------------------ | ------ |
+| Hero greeting   | 26 / 32            | 650    |
+| Screen heading  | 24 / 30            | 650    |
+| Section heading | 18 / 24            | 600    |
+| Dish title      | 15 / 21            | 550    |
+| Body            | 14 / 21            | 400    |
+| Metadata        | 12 / 17            | 400    |
+| Primary button  | 15 / 20            | 600    |
+| Price           | 16 / 22            | 650    |
+
+Use sentence case, not all caps. Prefer “Your basket” to “YOUR BASKET”. Use tabular numerals for prices, quantities and countdowns.
+
+## 2.4 Layout and spacing
+
+- Reference viewport: 402 px wide, with responsive support down to 320 px.
+- Horizontal page gutters: 20 px.
+- Base spacing system: 4, 8, 12, 16, 20, 24, 32 and 40 px.
+- Large cards: 24 px corner radius.
+- Dish imagery: 18–20 px corner radius.
+- Buttons and input fields: 16–20 px radius or full pill.
+- Bottom navigation: floating rounded container, respecting the device safe area.
+- Minimum interactive target: 44 × 44 px, ideally 48 × 48 px.
+- One main action per screen.
+- Fixed bottom action bars must not cover scrollable content.
+
+## 2.5 Motion
+
+| Interaction     | Behaviour                                             |
+| --------------- | ----------------------------------------------------- |
+| Add food        | 160–220 ms scale feedback, basket count updates       |
+| Open dish       | Bottom sheet rises in 250 ms                          |
+| Change quantity | Immediate number and price update                     |
+| Filter          | 180 ms selection transition                           |
+| Checkout        | Horizontal page transition, 220–280 ms                |
+| Loading         | Soft grey skeleton shimmer                            |
+| Order accepted  | Subtle check animation                                |
+| Delivery status | Smooth marker movement when new location data arrives |
+| Error           | Inline message, no unnecessary shake animation        |
+
+Respect reduced-motion settings. No excessive bouncing, rotating food photography or decorative animations.
+
+# 3. Screen-by-screen experience
+
+The following is the complete customer-facing architecture, including interaction states, exceptions and recovery behaviour.
+
+## Screen 01 — App launch and session restoration
+
+Purpose: Determine whether the customer can continue immediately.
+
+The app launches into a clean white screen with the Food101 logo centred. No long animation, no compulsory onboarding carousel.
+
+Logic
+
+- Returning user with valid session → Home.
+- First-time user → Welcome.
+- Expired session → Home as guest where supported; request sign-in when necessary.
+- Deep link → Restore session and open the intended dish, restaurant or order.
+- Active order → Restore its tracking state in the background.
+
+States: Splash, checking session, first visit, authenticated, guest, offline, session expired, mandatory app update, maintenance.
+
+Edge cases: A user force-closes the app during payment. On relaunch, the system checks payment and order status before showing any option to pay again.
+
+## Screen 02 — Welcome / authentication
+
+# Good food. No waiting around.
+
+Your favourites, delivered.
+
+Continue with phone
+
+Continue as guest
+
+The initial authentication should be phone-number based with an OTP, using the Nigerian `+234` country code as the default when appropriate.
+
+Screens and states: Phone input → OTP entry → verification → success → Home.
+
+Validation: Incorrect number, invalid OTP, expired OTP, resend cooldown, too many attempts, network failure, already-registered account and temporarily blocked verification.
+
+Recovery: Preserve the entered number, allow editing it, display a resend countdown and avoid clearing all OTP digits unnecessarily.
+
+Guest users can browse menus and build baskets. Sign-in can be requested when required for checkout or order communication.
+
+## Screen 03 — Delivery location and address permission
+
+This should not be a compulsory permission popup at launch.
+
+First show a human-readable choice:
+
+Where should we deliver?
+
+“Use my location” or “Enter an address”.
+
+If the customer chooses location detection, then request OS permission.
+
+Address creation flow
+
+Delivery address
+
+Search street, area or landmark
+
+Map with adjustable delivery pin
+
+House number, street, landmark
+
+Delivery instructions (optional)
+
+Home
+
+Work
+
+Other
+
+States: Permission unknown, granted, approximate, denied, permanently denied, manual address, GPS unavailable, address detected, serviceable, outside delivery zone.
+
+Edge cases and resolutions:
+
+- No GPS → Manual entry remains available.
+- Inaccurate map pin → Customer adjusts pin and confirms.
+- Outside delivery area → Show “We're not delivering here yet” with option to change location.
+- Address change after adding items → Revalidate restaurant coverage, ETA and fees.
+- Missing house number → Prompt before checkout if essential.
+- Multiple saved addresses → Show address selector.
+- No precise street address available → Allow landmark and delivery instructions where operationally supported.
+
+Do not silently replace the delivery address when GPS changes.
+
+## Screen 04 — Home
+
+This is the most important screen visually and commercially.
+
+The reference has the right foundation, but the hierarchy needs refinement.
+
+Hi, Yu
+
+Home · Lagos
+
+What are you craving?
+
+Your order is on its way
+
+Iya Wale Swallows
+
+## 8 min
+
+What are you craving?
+
+See all
+
+[Ejanla Nigeria\<!-- --> Menu & Delivery in \<!-- -->Surulere\<!-- --> - Order Online | Chowdeck\<!-- -->](https://images.openai.com/static-rsc-4/6N7KIbOs-_PJxJj4XT4h_T_BmW_lOCG0-rHZOXLuKB6jl2Ha_G4KBRdmfh7_JnIogPkAUw2hO9R5OSwklceFmy6mxumBJTuk7doFCTcXUTzLRtytn1rPHT4xeX8D285L8MLNvqQzM2OYEvBIfF2Ax7_J0gv9253fT-PXcT_HQa4?purpose=inline)
+
+Jollof & chicken
+
+20–30 min
+
+₦3,500
+
+[Check Swiggy Dineout Menu Of Bastian Beach Club, Juhu, Mumbai](https://images.openai.com/static-rsc-4/LjlVPfulaZMc7HGZuFQMlB79GGaJ3LatDTVtGdv2xFJqyiKBd1Z7B617utPMD4x8mZlExsOrzzWVPIyByxREWvpNJNJYGRiz3IkjyLSnpEQkVtfLaf7jM8DFslalmE-u4fGuSoLT23FEnnHudwbXpUbOQ7lH_-r3DSoxStOwq_A?purpose=inline)
+
+Chocolate delight
+
+15–25 min
+
+₦4,200
+
+Popular near you
+
+See all
+
+# 🍚
+
+Rice
+
+# 🥣
+
+Swallow
+
+# 🍗
+
+Chicken
+
+# 🍰
+
+Desserts
+
+Illustrative component composition, not a final rendered app screenshot.
+
+### Home content order
+
+1. Greeting, current address and basket access.
+2. Search field.
+3. Active order tracker, only if an active order exists.
+4. Contextual promotion, only if a relevant offer exists.
+5. Food discovery carousel.
+6. Popular categories.
+7. Restaurants near the delivery address.
+8. Recommended dishes or order-again section.
+9. Bottom navigation.
+
+Do not reserve empty space for modules with no content. If no order is active, the tracker disappears and discovery moves up.
+
+### Home states
+
+| State                     | Display                                                  |
+| ------------------------- | -------------------------------------------------------- |
+| First-time guest          | Popular local food and restaurants                       |
+| Returning customer        | Personalised dishes and reorder suggestions              |
+| Active order              | Compact green order card                                 |
+| Multiple active orders    | Stacked order summaries or “2 active orders” entry       |
+| No restaurants nearby     | Change-address guidance                                  |
+| Restaurants closed        | Clearly labelled closed cards and available alternatives |
+| Loading                   | Skeletons matching the actual card dimensions            |
+| Offline with cached data  | Cached content with connection notice                    |
+| Empty recommendation feed | Popular dishes fallback                                  |
+| Promotion expired         | Remove promotion without leaving a gap                   |
+
+Design correction: The screenshot's large map can remain as an optional tracking-card variation, but it should not consume a third of the Home screen. The live map belongs primarily on the Tracking screen.
+
+## Screen 05 — Search and discovery
+
+Search must support both food-first and restaurant-first behaviour.
+
+A user may search “Amala”, “Iya Wale”, “chicken under 5k” or “something spicy”.
+
+### Search structure
+
+Search food or restaurants
+
+RECENT SEARCHES
+
+Jollof rice
+
+TRENDING
+
+Amala
+
+Shawarma
+
+Small chops
+
+Fried rice
+
+### Search states and use cases
+
+| Input / condition | Behaviour                              |
+| ----------------- | -------------------------------------- |
+| Empty query       | Recent and trending searches           |
+| Typing            | Debounced suggestions                  |
+| Exact dish match  | Dish results prioritised               |
+| Restaurant name   | Restaurant results                     |
+| Misspelling       | Suggested correction                   |
+| No match          | “No results for…” with alternatives    |
+| Closed restaurant | Visible with closed status if relevant |
+| Out-of-stock dish | Mark unavailable, no add action        |
+| No internet       | Cached recent searches and retry       |
+| Search cleared    | Return to discovery state              |
+
+The results page should have segmented tabs: All · Dishes · Restaurants. Filters should include delivery time, price range, ratings, offers, dietary needs and availability.
+
+Do not show ratings, delivery fees or ETAs that the system cannot actually calculate.
+
+## Screen 06 — Explore / restaurant listing
+
+Explore should present a scannable catalogue of restaurants.
+
+Each restaurant card needs:
+
+- Large image.
+- Restaurant name.
+- Cuisine category.
+- Estimated delivery time.
+- Delivery fee or applicable promotion.
+- Rating with review count, where verified.
+- Open, closing soon, closed or unavailable state.
+
+### Filter and sorting flows
+
+Filters: Cuisine, price, rating, delivery time, dietary options, offers and currently open.
+
+Sort: Recommended, fastest delivery, highest rated, lowest delivery fee.
+
+States: Default, filtered, sorted, no results, loading, error, unavailable location.
+
+Edge cases: Applying filters that produce no results must show a “Clear filters” action. Changing the address should refresh available restaurants and remove invalid location-specific assumptions.
+
+## Screen 07 — Restaurant details
+
+[City Spoons | Lagos Food Delivery - Fresh Nigerian Meals](https://images.openai.com/static-rsc-4/qPfSwyz7FV94m5fP1QIdQTlCIVvouCk1GED00SSqvoIxgEZ3D4OgaARdoVZPDcQBCfUxQVMsAyHnpD7ap87Kyi8KABLVa13lcq4aWY9e5OWGdz7lVAfZ1dPjzrHbiGWWD_fAvACL2HMb75M8n5J9d1ImhG5XpRiWi_chK0wUGwA?purpose=inline)
+
+[cityspoons.com](https://cityspoons.com/?utm_source=chatgpt.com)
+
+## Iya Wale Swallows
+
+★ 4.7 (324)
+
+20–35 min
+
+₦700 delivery
+
+Fresh Nigerian meals, made with care.
+
+Popular
+
+Rice
+
+Swallows
+
+Drinks
+
+[Premium Nigerian Dining & African Cuisine | Zion Kitchen](https://images.openai.com/static-rsc-4/beJmARZGZx96vHJexG7WhSFh3trJ80y4hzOnbz4NLyYjNa5kYfVDNTyvgMlF8CFfu1oSZlLi8e0jcdP0Uacu8Pl0SHdSP3YvRu7pq3p05DXyfYxECNAs90w_PgqUC47MMiXSKB9daq8-ExlBTpXXJOXgUdfpuKVOpkhoxJqrwDY?purpose=inline)
+
+Egusi & pounded yam
+
+Rich egusi soup with your choice of swallow
+
+₦3,800
+
+### Restaurant interactions
+
+Tap restaurant → View menu.
+
+Tap dish → Open dish details.
+
+Tap favourite → Save restaurant; if sign-in is required, preserve the intended action.
+
+Tap category → Scroll to relevant menu section.
+
+Tap restaurant information → Show hours, address, delivery terms and relevant policies.
+
+### Restaurant edge cases
+
+- Restaurant is temporarily closed.
+- Restaurant closes while user browses.
+- Restaurant is accepting scheduled orders only.
+- Menu item becomes unavailable.
+- Restaurant stops delivering to the selected location.
+- Restaurant is busy and ETA increases.
+- Menu prices change before checkout.
+- Basket contains food from another restaurant.
+
+V1 basket rule: One restaurant per basket. When adding from another restaurant, ask whether to replace the existing basket. Never silently discard items.
+
+## Screen 08 — Dish details and customisation
+
+This should be a large bottom sheet for simple dishes, expanding to a full screen for complex configurations.
+
+[3k CHOW delivery in Lagos | Glovo](https://images.openai.com/static-rsc-4/DhVEDhvC5_bzLGo5cicYUxVmgtGRMwQqW6tywx53zgSCaN-bg5hyO5vZxFLZf4sdS4JHvCQYFOyQdSXlw1uXO2kTcxUECtHdgK8EI59Z9jHhl79QqijswtwSQLgSMfcnPtpzH258r5-4jZcbVewL7W0kWBKCOlSvXWcFEcX485o?purpose=inline)
+
+[glovoapp.com](https://glovoapp.com/en/ng/lagos/stores/3k-chow-los?utm_source=chatgpt.com)
+
+## Jollof & chicken
+
+### ₦3,500
+
+Smoky jollof rice served with grilled chicken.
+
+Choose your portion
+
+Required
+
+Regular
+
+Large (+₦1,000)
+
+Extras
+
+Optional
+
+Plantain (+₦500)
+
+Extra chicken (+₦1,500)
+
+1
+
+Add · ₦3,500
+
+### Configuration logic
+
+Each dish can have zero or more option groups. Groups must support:
+
+- Required single selection.
+- Optional single selection.
+- Optional multiple selection.
+- Minimum and maximum selections.
+- Quantity-limited add-ons.
+- Price adjustments.
+- Variant-specific availability.
+- Special instructions.
+- Allergen information where available.
+
+### States
+
+Default, configuring, incomplete required options, valid selection, quantity changed, unavailable option, price updated, adding, added, failed add.
+
+### Edge cases
+
+- Required option not selected → Disable Add and identify the missing group.
+- Selected add-on sells out → Remove the invalid selection and inform the customer.
+- Dish price changes → Show updated price before addition.
+- Quantity exceeds available stock → Limit and explain.
+- User closes sheet with unsaved customisations → Dismiss without modifying basket.
+- Same dish with different customisations → Separate basket line items.
+- Same dish with identical configuration → Merge quantities where appropriate.
+- Allergens → Display available information without promising an allergen-free environment.
+
+## Screen 09 — Basket
+
+## Your basket
+
+Iya Wale Swallows
+
+[EatYum  - Yaba\<!-- --> Menu & Delivery in \<!-- -->Alagomeji\<!-- --> - Order Online | Chowdeck\<!-- -->](https://images.openai.com/static-rsc-4/yIIoivYHsDvYMXVBSWMxuR5XiyRnIB6LQNm5Ot5hcKlmO1BDvcAOx4AyuyvzeSzjhv68fkyP5aJNwHvZGm3l11maIGgm56CR0NoCdapbi7oh59wTaYEq7zP1KiVk0rupY4XEer2TWgly7qek7QnRXOHyucTIzW-FtcMt_9ZJ4u0?purpose=inline)
+
+Jollof & chicken
+
+Regular · Plantain
+
+₦4,000
+
+1
+
+Add a note for the restaurant
+
+Subtotal
+
+₦4,000
+
+Delivery fee
+
+₦700
+
+Service fee
+
+₦200
+
+Total
+
+## ₦4,900
+
+Continue to checkout
+
+Illustrative amounts only; fees must be calculated from the actual restaurant, address and order.
+
+### Basket rules
+
+The basket should be accessible from the header and a persistent floating basket bar when populated.
+
+The bar should display item count, subtotal and “View basket”. Avoid showing the complete checkout breakdown on every page.
+
+### Basket states
+
+| State               | UX                                                      |
+| ------------------- | ------------------------------------------------------- |
+| Empty               | Illustration, “Your basket is empty”, Explore food      |
+| One item            | Standard basket                                         |
+| Multiple items      | Group by dish                                           |
+| Item modified       | Recalculate total immediately                           |
+| Item removed        | Undo action for a short period                          |
+| Minimum order unmet | Explain the amount remaining                            |
+| Unavailable item    | Highlight and require removal/replacement               |
+| Restaurant closed   | Block immediate checkout; offer scheduling if supported |
+| Expired promotion   | Remove discount and show updated total                  |
+| Fee recalculation   | Clearly show new totals                                 |
+| Basket restore      | Revalidate all items before allowing checkout           |
+
+Do not let a cached basket proceed to payment with stale prices.
+
+## Screen 10 — Checkout
+
+Checkout should be a single, vertically scrolling screen for returning customers, not a five-step wizard.
+
+## Checkout
+
+Deliver to
+
+Change
+
+Home
+
+Saved delivery address
+
+Delivery time
+
+As soon as possible · 25–35 min
+
+Payment
+
+Change
+
+Choose payment method
+
+Order summary
+
+Edit
+
+1 item · Iya Wale Swallows
+
+Total to pay
+
+## ₦4,900
+
+Place order · ₦4,900
+
+### Checkout validation
+
+Before enabling “Place order”, verify:
+
+- Basket is valid.
+- Restaurant is accepting orders.
+- Address is serviceable.
+- Delivery instructions are sufficient where needed.
+- Delivery slot is available.
+- Payment method is valid.
+- Pricing and fees are current.
+- Minimum order and promotional conditions are satisfied.
+
+If a condition fails, focus the relevant section and explain the exact correction required.
+
+### Checkout edge cases
+
+Address becomes unavailable, ETA changes, delivery fee changes, restaurant closes, item sells out, promotion expires, payment method expires, delivery slot fills, customer leaves checkout, duplicate tap, timeout.
+
+Critical rule: Once a payment attempt begins, the order submission must use an idempotency key so repeated taps or retries cannot accidentally create duplicate charges or orders.
+
+## Screen 11 — Payment methods
+
+Payment should use a supported, trusted payment provider rather than handling raw card details directly inside Food101.
+
+Possible methods for the Nigerian market:
+
+- Card.
+- Bank transfer.
+- Supported bank payment or provider checkout options.
+- Wallet or credits, if Food101 operates one.
+- Cash on delivery only where explicitly supported by the restaurant and platform.
+
+### Payment states
+
+Choose method
+
+Select available option
+
+Processing
+
+Do not resubmit
+
+Verified
+
+Order creation follows
+
+Needs attention
+
+Retry or change method
+
+### Payment exception handling
+
+| Scenario                               | Required behaviour                                        |
+| -------------------------------------- | --------------------------------------------------------- |
+| Payment declined                       | Show reason if available, allow another method            |
+| OTP / 3DS challenge                    | Preserve checkout and return correctly                    |
+| Customer cancels                       | Return to checkout without creating order                 |
+| Bank transfer pending                  | Show pending verification, not success                    |
+| App closes mid-payment                 | Reconcile on reopen                                       |
+| Provider timeout                       | Query payment status before retry                         |
+| Debit occurs but no confirmation       | Show “We're checking your payment”                        |
+| Duplicate callback                     | Process once                                              |
+| Payment succeeds, order creation fails | Reconcile, retry order creation safely or initiate refund |
+| Payment succeeds, restaurant rejects   | Refund or resolution workflow                             |
+| Amount mismatch                        | Do not accept as a completed order                        |
+| Network disconnect                     | Preserve transaction reference and reconcile              |
+
+Do not equate a successful debit with a confirmed restaurant order. Those are separate operational states.
+
+## Screen 12 — Order placement and confirmation
+
+This is a high-trust moment.
+
+After payment, the system should clearly distinguish between:
+
+1. Payment verification.
+2. Order submission.
+3. Restaurant acceptance.
+
+The UI should never prematurely display “Restaurant is preparing your food” before acceptance.
+
+### Confirmation presentation
+
+# Order placed!
+
+We've sent your order to Iya Wale Swallows.
+
+Order number
+
+\#F10124
+
+Track your order
+
+States: Submitting, awaiting payment verification, placed, awaiting restaurant acceptance, accepted, rejected, placement failed, uncertain.
+
+When the result is uncertain, show “We're confirming your order” and continue reconciliation. Never force the user to place another order without checking the first attempt.
+
+# 4. Live delivery tracking
+
+## Screen 13 — Tracking overview
+
+The screenshot's map-based tracking concept belongs here in its most complete form.
+
+Live delivery map
+
+Restaurant · Rider · Destination
+
+Rider is on the way
+
+## 8 min
+
+Your rider
+
+Contact available after assignment
+
+Order confirmed
+
+Preparing your food
+
+On the way
+
+Delivered
+
+### Tracking state machine
+
+1
+
+Order submitted
+
+Awaiting restaurant response
+
+2
+
+Restaurant accepted
+
+Preparation started
+
+3
+
+Preparing
+
+Kitchen is working on the order
+
+4
+
+Ready for pickup
+
+Waiting for rider handover
+
+5
+
+Picked up
+
+Rider has collected the order
+
+6
+
+On the way
+
+Live location when available
+
+7
+
+Arriving
+
+Rider is near destination
+
+8
+
+Delivered
+
+Order completion confirmed
+
+The actual status should be driven by backend events, not by a local timer pretending an order has advanced.
+
+### Tracking exceptions
+
+| Condition                          | Customer experience                        |
+| ---------------------------------- | ------------------------------------------ |
+| No rider assigned                  | “Finding a rider”                          |
+| Rider rejects assignment           | Continue assignment, update ETA            |
+| GPS temporarily unavailable        | Show last update time and text status      |
+| Rider stationary                   | Do not infer an incident                   |
+| ETA increases                      | Update estimate with explanation           |
+| Restaurant preparation delayed     | “Your food is taking longer than expected” |
+| Rider cannot locate customer       | Surface contact and address instructions   |
+| Customer unreachable               | Contact attempts and delivery policy       |
+| Rider changes                      | Update rider information                   |
+| Order cancelled                    | Stop live tracking, show refund state      |
+| Delivery disputed                  | Provide “Report an issue”                  |
+| Order marked delivered but missing | Open delivery dispute flow                 |
+| Multiple active orders             | Separate order tracking entries            |
+
+The map should display the actual rider location only when location-sharing and order-state rules permit it. Otherwise show a static route or status summary.
+
+# 5. Post-order and retention flows
+
+## Screen 14 — Delivery completion
+
+Show a concise confirmation: “Delivered. Enjoy your meal!”
+
+Primary action: Rate your order.
+
+Secondary action: View receipt.
+
+Optional action: Order again.
+
+Do not immediately force a rating modal over the delivered screen.
+
+## Screen 15 — Rating and review
+
+Two distinct experiences:
+
+- Food and restaurant rating.
+- Delivery experience rating.
+
+Use a simple 1–5-star control with optional feedback tags and a short comment field.
+
+States: Not rated, rating selected, feedback entered, submitted, already rated, submission error.
+
+If there is an unresolved delivery complaint, offer support rather than forcing a positive/negative rating first.
+
+## Screen 16 — Order history
+
+Tabs: Active · Past.
+
+Each order card contains restaurant name, date, total, order status and relevant actions.
+
+Actions: Track, View details, Reorder, Receipt, Get help.
+
+Edge cases: Restaurant no longer exists, dish removed, price changed, unavailable item, partial refund, cancelled order, duplicate reorder tap.
+
+Reorder must revalidate every item and price before creating a new basket.
+
+## Screen 17 — Order details and receipt
+
+Display the exact historical transaction, not current menu prices.
+
+Include order ID, timestamp, items and customisations, original fee breakdown, discounts, payment method summary, delivery address, fulfilment status, refunds and receipt.
+
+## Screen 18 — Favourites
+
+Save restaurants and dishes separately.
+
+States: Empty, populated, unavailable favourite, restaurant closed, removed favourite, network failure.
+
+A favourite dish should open its current product configuration, not blindly add an outdated configuration.
+
+# 6. Account and settings
+
+## Screen 19 — Account hub
+
+Your account
+
+Manage your Food101 experience
+
+My orders
+
+Saved addresses
+
+Payment methods
+
+Favourites
+
+Offers & rewards
+
+Help & support
+
+Settings
+
+## Screen 20 — Profile management
+
+Name, phone, email (optional), notification preferences and account controls.
+
+Edge cases: Duplicate phone number, unverified new number, lost access to old number, failed save, partially completed profile, account deletion with active orders.
+
+## Screen 21 — Saved addresses
+
+Add, edit, label, select default and delete.
+
+If the address is used by an active order, editing the saved record must not automatically change that active order's destination.
+
+## Screen 22 — Payment management
+
+List provider-managed saved methods where supported.
+
+Add method, remove method, choose default, handle expired cards and failed tokenisation.
+
+Do not store raw card security codes or expose sensitive card data.
+
+## Screen 23 — Notifications
+
+Separate transactional and promotional preferences.
+
+Transactional notifications include order acceptance, preparation, rider assignment, delivery and payment/refund updates.
+
+Promotional notifications require appropriate consent.
+
+States: Permission unknown, allowed, denied, token expired, device changed, notification received, opened, stale notification.
+
+A stale tracking notification should open the current order state, not an obsolete screen.
+
+## Screen 24 — Support
+
+Support entry points should be contextual.
+
+For an active order: “Order taking too long”, “Change delivery instructions”, “Contact rider”, “Cancel order”, “Payment problem”.
+
+For a completed order: “Missing item”, “Wrong item”, “Food quality”, “Order not received”, “Refund issue”.
+
+The app should attach the relevant order reference automatically.
+
+# 7. AI assistant experience
+
+The AI tab in your screenshot deserves a clear product purpose. It should not simply be a chatbot added because AI is fashionable.
+
+Its job is to reduce decision fatigue and build a valid basket faster.
+
+## Screen 25 — Food101 AI
+
+## What are you craving?
+
+Tell me what you're in the mood for.
+
+Something spicy
+
+Under ₦5,000
+
+High protein
+
+Surprise me
+
+Try asking:
+
+“Find me something filling under ₦5,000 that can arrive quickly.”
+
+Ask Food101...
+
+### AI capabilities
+
+- Understand natural-language food requests.
+- Recommend available dishes based on location, price and preferences.
+- Explain options and customisations.
+- Build a proposed basket.
+- Suggest alternatives when something is unavailable.
+- Help find suitable meals based on stated dietary preferences.
+- Hand off to checkout after explicit customer confirmation.
+
+### AI guardrails
+
+- Never invent restaurants, prices, delivery times or stock availability.
+- Use real menu data for recommendations.
+- Do not assume dietary safety from incomplete allergen information.
+- Never place an order or initiate payment without explicit confirmation.
+- Clearly distinguish recommendations from verified restaurant information.
+- Fall back to conventional search when the AI service is unavailable.
+
+Critical UX decision: AI recommendations should render as normal Food101 dish cards with Add buttons, not just paragraphs of chatbot text.
+
+# 8. Global state and error design
+
+Every major screen needs a consistent set of system states. These are reusable patterns rather than 25 individually designed error screens.
+
+Loading
+
+Skeletons, not spinners everywhere
+
+Empty
+
+Explain what's missing and what to do
+
+Offline
+
+Preserve work and offer retry
+
+Error
+
+Explain and recover
+
+Success
+
+Confirm the completed action
+
+Pending
+
+Show what is being verified
+
+### Error-copy standards
+
+| Situation            | Recommended copy                           | Action             |
+| -------------------- | ------------------------------------------ | ------------------ |
+| Empty basket         | “Nothing in your basket yet.”              | Explore food       |
+| No search results    | “We couldn't find that dish.”              | Clear filters      |
+| No restaurants       | “No restaurants available here right now.” | Change address     |
+| Network offline      | “You're offline. Check your connection.”   | Try again          |
+| Dish sold out        | “This dish just sold out.”                 | Find similar       |
+| Payment declined     | “Your payment didn't go through.”          | Try another method |
+| Payment pending      | “We're checking your payment.”             | View status        |
+| Restaurant delay     | “Your food is taking a little longer.”     | Track order        |
+| Delivery problem     | “Something went wrong with your delivery.” | Get help           |
+| Unknown system error | “Something went wrong. Please try again.”  | Retry              |
+
+Never use technical errors such as “500”, “null response”, “invalid mutation” or “payment intent mismatch” in customer-facing copy.
+
+# 9. Cancellation, refunds and disputes
+
+These are not optional flows for a functioning food delivery product.
+
+## Screen 26 — Cancel order
+
+Cancellation eligibility must depend on actual order state and restaurant/platform policy.
+
+Flow: Order details → Cancel order → Reason → Show eligibility and refund implications → Confirm cancellation → Cancellation result.
+
+States: Eligible, cancellation requested, cancelled, not eligible, awaiting approval, request failed.
+
+Do not promise an automatic refund when the order has already entered a non-refundable preparation stage.
+
+## Screen 27 — Refund tracking
+
+Show refund amount, reason, original payment method, processing status, estimated timeframe where supported, and support reference.
+
+States: Requested, under review, approved, initiated, processing, completed, rejected, failed.
+
+A refund initiated by Food101 is not necessarily settled by the customer's bank.
+
+## Screen 28 — Issue reporting
+
+Support evidence submission for missing or incorrect items, including photos where appropriate.
+
+Flow: Select order → Select issue → Identify affected item(s) → Explain → Upload optional evidence → Submit → Case tracking.
+
+Avoid asking the customer to re-enter information already present in the order.
+
+# 10. Additional operational edge cases
+
+These are the situations that frequently break apparently polished delivery prototypes.
+
+| Scenario                                         | Required system behaviour                                          |
+| ------------------------------------------------ | ------------------------------------------------------------------ |
+| Two devices modify same basket                   | Define server-authoritative basket version and conflict resolution |
+| Restaurant changes menu mid-session              | Revalidate before checkout                                         |
+| User switches addresses                          | Recalculate availability, ETA and fees                             |
+| User adds from another restaurant                | Ask before replacing basket                                        |
+| User pays twice due to lag                       | Idempotency and transaction reconciliation                         |
+| Customer exits payment provider                  | Restore pending payment state                                      |
+| Restaurant rejects after payment                 | Notify and begin refund/recovery                                   |
+| Rider reassigned                                 | Update identity and tracking                                       |
+| ETA unavailable                                  | Show status without invented time                                  |
+| Phone battery dies                               | Restore order from server on login                                 |
+| App notification arrives late                    | Fetch current state when opened                                    |
+| Promo reaches usage limit                        | Revalidate and explain                                             |
+| Customer attempts to reuse promo                 | Show eligibility failure                                           |
+| Delivery zone changes                            | Revalidate before order submission                                 |
+| Restaurant accepts but cannot fulfil an item     | Customer-approved substitution or cancellation/refund              |
+| Delivery address needs correction after dispatch | Support-assisted change with feasibility check                     |
+| Partial delivery                                 | Record affected items and resolution                               |
+| Food is marked delivered incorrectly             | Dispute flow with audit trail                                      |
+| Customer requests deletion with active order     | Explain required retention and fulfilment handling                 |
+| Service outage                                   | Preserve basket and pending transaction references                 |
+
+# 11. Screen inventory and implementation priorities
+
+Use this as the working checklist for the prototype. P0 screens are essential to demonstrate the complete order journey. P1 screens complete the customer experience. P2 screens extend retention and intelligence.
+
+Prototype build checklist
+
+0/32 complete
+
+AllP0P1P2
+
+Launch / session restore
+
+P0
+
+Welcome / authentication
+
+P0
+
+OTP verification
+
+P0
+
+Address permission / entry
+
+P0
+
+Home
+
+P0
+
+Search
+
+P0
+
+Explore / results
+
+P0
+
+Restaurant details
+
+P0
+
+Dish customisation
+
+P0
+
+Basket
+
+P0
+
+Checkout
+
+P0
+
+Payment selection
+
+P0
+
+Payment processing / result
+
+P0
+
+Order confirmation
+
+P0
+
+Live tracking
+
+P0
+
+Delivery completion
+
+P0
+
+Order history
+
+P1
+
+Order details / receipt
+
+P1
+
+Favourites
+
+P1
+
+Account hub
+
+P1
+
+Profile
+
+P1
+
+Saved addresses
+
+P1
+
+Saved payments
+
+P1
+
+Notifications / preferences
+
+P1
+
+Support
+
+P1
+
+AI assistant
+
+P2
+
+Cancellation
+
+P1
+
+Refund tracking
+
+P1
+
+Issue reporting
+
+P1
+
+Ratings / reviews
+
+P1
+
+Promotions / vouchers
+
+P1
+
+Scheduled delivery
+
+P2
+
+# 12. Prototype interaction contract
+
+A clickable prototype should be testable as a connected product, not a collection of isolated screens.
+
+Every visible interactive element must have a defined result. In particular:
+
+| Component        | Required interaction                                   |
+| ---------------- | ------------------------------------------------------ |
+| Search           | Opens search, accepts input, displays matching results |
+| Food card        | Opens dish details                                     |
+| Restaurant card  | Opens restaurant menu                                  |
+| Add button       | Validates selections, updates basket                   |
+| Quantity control | Recalculates prices and removes at zero                |
+| Basket           | Persists items across navigation                       |
+| Address selector | Changes delivery destination and revalidates           |
+| Payment selector | Updates selected payment method                        |
+| Place order      | Validates, submits once, transitions correctly         |
+| Tracking card    | Opens corresponding active order                       |
+| Reorder          | Builds basket from current menu                        |
+| Favourite        | Persists saved status                                  |
+| Back button      | Returns without losing valid state                     |
+| Error retry      | Retries the failed operation, not the entire journey   |
+
+The prototype should also demonstrate distinct paths for first-time users, returning users, guests, active-order customers and users recovering from a failed payment.
+
+## 13. Quality assurance — probe and re-probe
+
+These are the test journeys I would require before calling Food101's prototype complete.
+
+Test A — Standard purchase
+
+Returning customer opens Home, selects food, customises it, checks out, pays and tracks delivery.
+
+Pass condition: No unnecessary authentication, no lost state, correct totals.
+
+Test B — First-time customer
+
+Guest browses, builds basket, enters address, signs in if required and completes checkout.
+
+Pass condition: Basket survives authentication and address selection.
+
+Test C — Out-of-stock item
+
+Customer adds a dish; the restaurant marks it unavailable before payment.
+
+Pass condition: Checkout blocks invalid item and explains alternatives.
+
+Test D — Failed payment
+
+Customer attempts payment, receives a decline and chooses another method.
+
+Pass condition: No duplicate order or charge, basket preserved.
+
+Test E — Uncertain payment
+
+Customer closes the app during bank transfer or payment verification.
+
+Pass condition: Reopening reconciles status before offering payment again.
+
+Test F — Restaurant rejection
+
+Payment is verified but the restaurant cannot accept the order.
+
+Pass condition: Correct rejection, notification and refund workflow.
+
+Test G — Address change
+
+Customer changes delivery address with items already in basket.
+
+Pass condition: Coverage, delivery fee, ETA and availability recalculated.
+
+Test H — Delivery delay
+
+Rider is reassigned and estimated arrival changes.
+
+Pass condition: Tracking remains accurate and customer is informed.
+
+Test I — Reorder
+
+Customer reorders a previous meal whose price and options have changed.
+
+Pass condition: Updated items and prices shown before checkout.
+
+Test J — Accessibility
+
+Customer uses large text, screen reader and reduced motion.
+
+Pass condition: Controls remain readable, labelled and operable.
+
+## 14. Final design decisions
+
+After challenging the architecture against the main purchase flow and the failure scenarios, these are the decisions I would lock in for Food101 V1.
+
+1. Food first, restaurants second. People usually arrive knowing what they want to eat. The Home screen should let them find dishes immediately, while Explore provides restaurant-level discovery.
+2. Four navigation destinations. Home, Explore, AI and Account. Basket and Tracking appear when relevant, avoiding unnecessary permanent navigation items.
+3. One checkout screen. Address, delivery timing, payment and totals should remain together. Complex flows are only opened when the customer needs to change something.
+4. One restaurant per basket in V1. This avoids multi-restaurant fulfilment complexity until the logistics system supports it properly.
+5. Tracking is status-led, not map-led. The customer primarily wants to know where the order stands and when it may arrive. A map supports that information.
+6. No fabricated certainty. Estimated times, food availability, ratings, delivery progress and payment confirmation must reflect actual data.
+7. Preserve state everywhere. A lost connection, closed app, expired session or failed payment should not force customers to rebuild their orders.
+8. One dominant CTA per screen. Secondary actions should be visibly quieter.
+9. Promotions must never dominate the purchase experience. The promotional banner in the original design should be compact, contextual and dismissible where appropriate.
+10. The design must remain recognisably Food101. White space, authentic food photography, warm orange details, soft-grey cards, black primary actions and vivid green live-delivery feedback.
+
+The single most important success metric is completed orders without unnecessary friction. Measure search-to-item-add, item-add-to-checkout, checkout-to-payment success, payment recovery, and order completion separately. This will reveal whether the interface is actually making food ordering easier rather than merely looking minimal.
+
+For the first prototype, build the 16 P0 screens and their critical states as one connected experience. Then add the P1 operational screens. That produces something you can genuinely test with customers before spending effort on the AI assistant, advanced personalisation and secondary features.

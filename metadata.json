@@ -1,0 +1,6 @@
+{
+  "name": "Food101",
+  "description": "Mobile-first food delivery application for authentic dining with live tracking, clean typography, and AI-assisted food discovery.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
