@@ -27,4 +27,3 @@ Simply drag `Food101App.swift` into your SwiftUI Xcode project or Swift Playgrou
 ```bash
 swift run
 ```
-
