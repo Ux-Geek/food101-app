@@ -37,13 +37,13 @@ export const ExploreTab: React.FC = () => {
       {/* Search Bar Trigger */}
       <button
         onClick={() => setIsSearchOpen(true)}
-        className="w-full bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] px-4 py-3 flex items-center justify-between text-[#858585] hover:border-[#171717] transition-colors"
+        className="w-full bg-[#F6F6F6] border border-[#E8E8E8] rounded-full px-4 py-3 flex items-center justify-between text-[#858585] hover:border-[#171717] transition-colors"
       >
         <div className="flex items-center gap-2.5">
           <Search className="w-4 h-4 text-[#858585]" />
           <span className="text-sm text-[#858585]">Search restaurants or cuisines</span>
         </div>
-        <span className="text-[11px] font-semibold text-[#171717] bg-white border border-[#E8E8E8] px-2.5 py-1 rounded-[99px]">
+        <span className="text-[11px] font-semibold text-[#171717] bg-white border border-[#E8E8E8] px-2.5 py-1 rounded-full">
           Find
         </span>
       </button>
@@ -56,7 +56,7 @@ export const ExploreTab: React.FC = () => {
             <button
               key={c}
               onClick={() => setActiveCuisine(c)}
-              className={`px-3.5 py-2 rounded-[99px] text-xs font-semibold whitespace-nowrap transition-colors shrink-0 ${
+              className={`px-3.5 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-colors shrink-0 ${
                 isSelected
                   ? 'bg-[#171717] text-white border border-[#171717]'
                   : 'bg-[#F6F6F6] text-[#626262] border border-[#E8E8E8] hover:text-[#171717]'
@@ -76,7 +76,7 @@ export const ExploreTab: React.FC = () => {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as any)}
-            className="bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] px-2.5 py-1 text-xs font-semibold text-[#171717] focus:outline-hidden"
+            className="bg-[#F6F6F6] border border-[#E8E8E8] rounded-full px-2.5 py-1 text-xs font-semibold text-[#171717] focus:outline-hidden"
           >
             <option value="recommended">Recommended</option>
             <option value="fastest">Fastest delivery</option>
@@ -87,9 +87,9 @@ export const ExploreTab: React.FC = () => {
 
         <button
           onClick={() => setOnlyOpen((v) => !v)}
-          className={`px-3 py-1 rounded-[99px] text-xs font-semibold border transition-colors ${
+          className={`px-3 py-1 rounded-full text-xs font-semibold border transition-colors ${
             onlyOpen
-              ? 'bg-[#12E600] text-[#171717] border-[#12E600]'
+              ? 'bg-[#05DF00] text-black border-[#05DF00]'
               : 'bg-[#F6F6F6] text-[#858585] border-[#E8E8E8]'
           }`}
         >

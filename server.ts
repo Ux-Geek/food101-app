@@ -88,7 +88,7 @@ async function startServer() {
     });
   }
 
-  const PORT = 3000;
+  const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3001;
   app.listen(PORT, '0.0.0.0', () => {
     console.log(`Food101 server ready on http://0.0.0.0:${PORT}`);
   });

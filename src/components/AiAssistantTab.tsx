@@ -93,14 +93,14 @@ export const AiAssistantTab: React.FC = () => {
             key={s}
             onClick={() => handleSearch(s)}
             disabled={loading}
-            className="px-3.5 py-1.5 rounded-[99px] bg-[#F6F6F6] border border-[#E8E8E8] text-xs font-semibold text-[#171717] whitespace-nowrap hover:border-[#171717] transition-colors shrink-0 disabled:opacity-50"
+            className="px-3.5 py-1.5 rounded-full bg-[#F6F6F6] border border-[#E8E8E8] text-xs font-semibold text-[#171717] whitespace-nowrap hover:border-[#171717] transition-colors shrink-0 disabled:opacity-50"
           >
             {s}
           </button>
         ))}
       </div>
 
-      {/* Input Field with 99px radius */}
+      {/* Input Field */}
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -114,12 +114,12 @@ export const AiAssistantTab: React.FC = () => {
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Ask Food101... e.g. 'Spicy swallow under ₦5k'"
           disabled={loading}
-          className="w-full bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] pl-4 pr-12 py-3 text-sm text-[#171717] placeholder-[#858585] focus:outline-hidden focus:border-[#171717]"
+          className="w-full bg-[#F6F6F6] border border-[#E8E8E8] rounded-full pl-4 pr-12 py-3 text-sm text-[#171717] placeholder-[#858585] focus:outline-hidden focus:border-[#171717]"
         />
         <button
           type="submit"
           disabled={!query.trim() || loading}
-          className="absolute right-1.5 top-1.5 bottom-1.5 w-9 rounded-[99px] bg-[#171717] text-white flex items-center justify-center hover:bg-[#FF641B] disabled:bg-[#858585] disabled:cursor-not-allowed transition-colors"
+          className="absolute right-1.5 top-1.5 bottom-1.5 w-9 rounded-full bg-[#171717] text-white flex items-center justify-center hover:bg-[#05DF00] hover:text-black disabled:bg-[#858585] disabled:cursor-not-allowed transition-colors"
           aria-label="Send query"
         >
           {loading ? (
@@ -132,10 +132,10 @@ export const AiAssistantTab: React.FC = () => {
 
       {/* AI Message Card */}
       {aiMessage && (
-        <div className="bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] p-4 px-5">
+        <div className="bg-[#F6F6F6] border border-[#E8E8E8] rounded-[22px] p-4 px-5">
           <div className="flex items-start gap-2.5">
-            <div className="w-6 h-6 rounded-[99px] bg-[#FF641B] text-white flex items-center justify-center shrink-0 text-xs">
-              <Sparkles className="w-3 h-3" />
+            <div className="w-6 h-6 rounded-full bg-[#171717] text-white flex items-center justify-center shrink-0 text-xs">
+              <Sparkles className="w-3 h-3 text-[#05DF00]" />
             </div>
             <div className="text-xs text-[#171717] leading-relaxed font-medium">
               {aiMessage}

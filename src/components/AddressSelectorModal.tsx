@@ -55,7 +55,7 @@ export const AddressSelectorModal: React.FC = () => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xs p-4 animate-in fade-in duration-200">
       <div
-        className="w-full max-w-[420px] bg-white rounded-[99px] p-6 shadow-2xl border border-[#E8E8E8] max-h-[90vh] overflow-y-auto no-scrollbar space-y-4"
+        className="w-full max-w-[420px] bg-white rounded-[28px] p-6 shadow-2xl border border-[#E8E8E8] max-h-[90vh] overflow-y-auto no-scrollbar space-y-4"
         role="dialog"
         aria-modal="true"
         aria-label="Delivery address"
@@ -70,7 +70,7 @@ export const AddressSelectorModal: React.FC = () => {
               setIsAddingNew(false);
               setIsAddressSelectorOpen(false);
             }}
-            className="w-8 h-8 rounded-[99px] bg-[#F6F6F6] flex items-center justify-center text-[#171717]"
+            className="w-8 h-8 rounded-full bg-[#F6F6F6] flex items-center justify-center text-[#171717]"
           >
             <X className="w-4 h-4" />
           </button>
@@ -83,13 +83,13 @@ export const AddressSelectorModal: React.FC = () => {
               onClick={() => {
                 showToast('Current GPS detected: Lekki Phase 1, Lagos');
               }}
-              className="w-full bg-[#12E600]/10 border border-[#12E600] rounded-[99px] p-3 px-4 flex items-center justify-between text-left hover:bg-[#12E600]/20 transition-colors"
+              className="w-full bg-[#05DF00]/10 border border-[#05DF00] rounded-full p-3 px-4 flex items-center justify-between text-left hover:bg-[#05DF00]/20 transition-colors"
             >
               <div className="flex items-center gap-2.5">
                 <Navigation className="w-4 h-4 text-[#171717]" />
                 <span className="text-xs font-bold text-[#171717]">Use my current location</span>
               </div>
-              <span className="text-[10px] font-bold text-[#171717] bg-[#12E600] px-2 py-0.5 rounded-[99px]">
+              <span className="text-[10px] font-bold text-[#171717] bg-[#05DF00] px-2 py-0.5 rounded-full">
                 GPS
               </span>
             </button>
@@ -106,7 +106,7 @@ export const AddressSelectorModal: React.FC = () => {
                   <div
                     key={addr.id}
                     onClick={() => handleSelectAddress(addr)}
-                    className={`cursor-pointer p-3 px-4 rounded-[99px] border flex items-center justify-between transition-colors ${
+                    className={`cursor-pointer p-3 px-4 rounded-[18px] border flex items-center justify-between transition-colors ${
                       isSelected
                         ? 'bg-[#171717] text-white border-[#171717]'
                         : 'bg-[#F6F6F6] text-[#171717] border-[#E8E8E8] hover:border-[#171717]'
@@ -114,11 +114,11 @@ export const AddressSelectorModal: React.FC = () => {
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
                       <div
-                        className={`w-4 h-4 rounded-[99px] border flex items-center justify-center shrink-0 ${
-                          isSelected ? 'border-[#FF641B] bg-[#FF641B]' : 'border-[#858585]'
+                        className={`w-4 h-4 rounded-full border flex items-center justify-center shrink-0 ${
+                          isSelected ? 'border-[#05DF00] bg-[#05DF00]' : 'border-[#858585]'
                         }`}
                       >
-                        {isSelected && <Check className="w-2.5 h-2.5 stroke-[3] text-white" />}
+                        {isSelected && <Check className="w-2.5 h-2.5 stroke-[3] text-black" />}
                       </div>
 
                       <div className="min-w-0">
@@ -127,7 +127,7 @@ export const AddressSelectorModal: React.FC = () => {
                         </div>
                         <div
                           className={`text-[11px] truncate mt-0.5 ${
-                            isSelected ? 'text-[#858585]' : 'text-[#626262]'
+                            isSelected ? 'text-[#A1A1AA]' : 'text-[#626262]'
                           }`}
                         >
                           {addr.fullAddress}
@@ -142,7 +142,7 @@ export const AddressSelectorModal: React.FC = () => {
             {/* Add New Address Button */}
             <button
               onClick={() => setIsAddingNew(true)}
-              className="w-full h-11 border border-dashed border-[#858585] rounded-[99px] text-xs font-semibold text-[#171717] hover:border-[#171717] flex items-center justify-center gap-1.5"
+              className="w-full h-11 border border-dashed border-[#858585] rounded-full text-xs font-semibold text-[#171717] hover:border-[#171717] flex items-center justify-center gap-1.5"
             >
               <Plus className="w-4 h-4 text-[#FF641B]" />
               <span>Enter a new address</span>
@@ -159,7 +159,7 @@ export const AddressSelectorModal: React.FC = () => {
                     key={l}
                     type="button"
                     onClick={() => setNewLabel(l)}
-                    className={`flex-1 py-1.5 rounded-[99px] text-xs font-semibold border ${
+                    className={`flex-1 py-1.5 rounded-full text-xs font-semibold border ${
                       newLabel === l
                         ? 'bg-[#171717] text-white border-[#171717]'
                         : 'bg-[#F6F6F6] text-[#626262] border-[#E8E8E8]'
@@ -176,7 +176,7 @@ export const AddressSelectorModal: React.FC = () => {
               <select
                 value={newArea}
                 onChange={(e) => setNewArea(e.target.value)}
-                className="w-full bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] px-3.5 py-2 text-xs font-semibold text-[#171717] focus:outline-hidden"
+                className="w-full bg-[#F6F6F6] border border-[#E8E8E8] rounded-full px-3.5 py-2 text-xs font-semibold text-[#171717] focus:outline-hidden"
               >
                 <option value="Lekki Phase 1, Lagos">Lekki Phase 1, Lagos</option>
                 <option value="Victoria Island, Lagos">Victoria Island, Lagos</option>
@@ -194,7 +194,7 @@ export const AddressSelectorModal: React.FC = () => {
                 value={newFullAddress}
                 onChange={(e) => setNewFullAddress(e.target.value)}
                 placeholder="e.g. 24 Admiralty Way, Block 3 Flat 2"
-                className="w-full bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] px-3.5 py-2 text-xs text-[#171717] placeholder-[#858585] focus:outline-hidden"
+                className="w-full bg-[#F6F6F6] border border-[#E8E8E8] rounded-full px-3.5 py-2 text-xs text-[#171717] placeholder-[#858585] focus:outline-hidden"
               />
             </div>
 
@@ -207,7 +207,7 @@ export const AddressSelectorModal: React.FC = () => {
                 value={newLandmark}
                 onChange={(e) => setNewLandmark(e.target.value)}
                 placeholder="e.g. Beside Filmhouse Cinemas"
-                className="w-full bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] px-3.5 py-2 text-xs text-[#171717] placeholder-[#858585] focus:outline-hidden"
+                className="w-full bg-[#F6F6F6] border border-[#E8E8E8] rounded-full px-3.5 py-2 text-xs text-[#171717] placeholder-[#858585] focus:outline-hidden"
               />
             </div>
 
@@ -220,21 +220,21 @@ export const AddressSelectorModal: React.FC = () => {
                 value={newInstructions}
                 onChange={(e) => setNewInstructions(e.target.value)}
                 placeholder="e.g. Gate code #1234 or leave with concierge"
-                className="w-full bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] px-3.5 py-2 text-xs text-[#171717] placeholder-[#858585] focus:outline-hidden"
+                className="w-full bg-[#F6F6F6] border border-[#E8E8E8] rounded-full px-3.5 py-2 text-xs text-[#171717] placeholder-[#858585] focus:outline-hidden"
               />
             </div>
 
             <div className="pt-2 flex gap-2">
               <button
                 type="submit"
-                className="flex-1 h-11 bg-[#171717] text-white text-xs font-semibold rounded-[99px] hover:bg-[#FF641B]"
+                className="flex-1 h-11 bg-[#171717] text-white text-xs font-semibold rounded-full hover:bg-[#05DF00] hover:text-black transition-colors"
               >
                 Save address
               </button>
               <button
                 type="button"
                 onClick={() => setIsAddingNew(false)}
-                className="px-4 h-11 bg-[#F6F6F6] text-[#171717] text-xs font-semibold rounded-[99px]"
+                className="px-4 h-11 bg-[#F6F6F6] text-[#171717] text-xs font-semibold rounded-full"
               >
                 Cancel
               </button>

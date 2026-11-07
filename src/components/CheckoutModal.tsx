@@ -64,7 +64,7 @@ export const CheckoutModal: React.FC = () => {
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 backdrop-blur-xs animate-in fade-in duration-200">
       <div
-        className="w-full max-w-[440px] bg-white rounded-t-[99px] border-t border-[#E8E8E8] shadow-2xl max-h-[92vh] flex flex-col overflow-hidden animate-in slide-in-from-bottom duration-250"
+        className="w-full max-w-[440px] bg-white rounded-t-[28px] border-t border-[#E8E8E8] shadow-2xl max-h-[92vh] flex flex-col overflow-hidden animate-in slide-in-from-bottom duration-250"
         role="dialog"
         aria-modal="true"
         aria-label="Checkout"
@@ -75,7 +75,7 @@ export const CheckoutModal: React.FC = () => {
           <button
             onClick={() => setIsCheckoutOpen(false)}
             disabled={isSubmitting}
-            className="w-9 h-9 rounded-[99px] bg-[#F6F6F6] border border-[#E8E8E8] flex items-center justify-center text-[#171717] hover:bg-[#E8E8E8] disabled:opacity-50"
+            className="w-9 h-9 rounded-full bg-[#F6F6F6] border border-[#E8E8E8] flex items-center justify-center text-[#171717] hover:bg-[#E8E8E8] disabled:opacity-50"
             aria-label="Close checkout"
           >
             <X className="w-4 h-4" />
@@ -85,14 +85,14 @@ export const CheckoutModal: React.FC = () => {
         {/* Scrollable Single Page Checkout */}
         <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4 no-scrollbar">
           {/* 1. Deliver to Section */}
-          <div className="bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] p-4 px-5">
+          <div className="bg-[#F6F6F6] border border-[#E8E8E8] rounded-[20px] p-4 px-5">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-[#858585] uppercase tracking-wide">
                 Deliver to
               </span>
               <button
                 onClick={() => setIsAddressSelectorOpen(true)}
-                className="text-xs font-semibold text-[#FF641B] hover:underline"
+                className="text-xs font-semibold text-[#05DF00] hover:underline"
               >
                 Change
               </button>
@@ -117,7 +117,7 @@ export const CheckoutModal: React.FC = () => {
           </div>
 
           {/* 2. Delivery Time Slot */}
-          <div className="bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] p-4 px-5 flex items-center justify-between">
+          <div className="bg-[#F6F6F6] border border-[#E8E8E8] rounded-[20px] p-4 px-5 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
               <Clock className="w-4 h-4 text-[#858585] shrink-0" />
               <div>
@@ -127,13 +127,13 @@ export const CheckoutModal: React.FC = () => {
                 </div>
               </div>
             </div>
-            <span className="text-[11px] font-semibold text-[#12E600] bg-[#171717] px-2.5 py-1 rounded-[99px]">
+            <span className="text-[11px] font-semibold text-[#05DF00] bg-[#171717] px-2.5 py-1 rounded-full">
               Fastest
             </span>
           </div>
 
           {/* 3. Payment Method Selection */}
-          <div className="bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] p-4 px-5">
+          <div className="bg-[#F6F6F6] border border-[#E8E8E8] rounded-[20px] p-4 px-5">
             <div className="text-xs font-bold text-[#858585] uppercase tracking-wide mb-2.5">
               Choose payment method
             </div>
@@ -145,7 +145,7 @@ export const CheckoutModal: React.FC = () => {
                   <button
                     key={method.id}
                     onClick={() => setSelectedPayment(method.type)}
-                    className={`w-full p-3 px-4 rounded-[99px] border flex items-center justify-between transition-colors text-left ${
+                    className={`w-full p-3 px-4 rounded-[16px] border flex items-center justify-between transition-colors text-left ${
                       isSelected
                         ? 'bg-[#171717] text-white border-[#171717]'
                         : 'bg-white text-[#171717] border-[#E8E8E8] hover:border-[#171717]'
@@ -153,9 +153,9 @@ export const CheckoutModal: React.FC = () => {
                   >
                     <div className="flex items-center gap-2.5">
                       <div
-                        className={`w-4 h-4 rounded-[99px] border flex items-center justify-center shrink-0 ${
+                        className={`w-4 h-4 rounded-full border flex items-center justify-center shrink-0 ${
                           isSelected
-                            ? 'border-[#FF641B] bg-[#FF641B] text-white'
+                            ? 'border-[#05DF00] bg-[#05DF00] text-black'
                             : 'border-[#858585]'
                         }`}
                       >
@@ -181,7 +181,7 @@ export const CheckoutModal: React.FC = () => {
 
             {/* Virtual Account Info if Bank Transfer Selected */}
             {selectedPayment === 'bank_transfer' && (
-              <div className="mt-3 p-3 bg-white border border-[#E8E8E8] rounded-[99px] text-xs space-y-1">
+              <div className="mt-3 p-3 bg-white border border-[#E8E8E8] rounded-[16px] text-xs space-y-1">
                 <div className="text-[11px] text-[#858585]">Instant Virtual Account:</div>
                 <div className="font-bold text-[#171717] flex justify-between">
                   <span>Wema Bank · 0248194021</span>
@@ -192,7 +192,7 @@ export const CheckoutModal: React.FC = () => {
           </div>
 
           {/* 4. Order Summary Accordion */}
-          <div className="bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] p-4 px-5">
+          <div className="bg-[#F6F6F6] border border-[#E8E8E8] rounded-[20px] p-4 px-5">
             <div className="text-xs font-bold text-[#858585] uppercase tracking-wide mb-2">
               Order summary · {basketRestaurant?.name}
             </div>
@@ -232,13 +232,13 @@ export const CheckoutModal: React.FC = () => {
 
           {/* Trust notice */}
           <div className="flex items-center justify-center gap-1.5 text-xs text-[#858585]">
-            <ShieldCheck className="w-4 h-4 text-[#12E600]" />
+            <ShieldCheck className="w-4 h-4 text-[#05DF00]" />
             <span>Secure payment encrypted with NIBSS standards</span>
           </div>
 
           {/* QA simulation notice if decline is active */}
           {qaPaymentDecline && (
-            <div className="bg-[#D92D20]/10 border border-[#D92D20] text-[#D92D20] text-xs p-3 rounded-[99px] text-center font-medium">
+            <div className="bg-[#D92D20]/10 border border-[#D92D20] text-[#D92D20] text-xs p-3 rounded-full text-center font-medium">
               ⚠️ QA Simulation: "Payment Decline" toggle is ON in test tools
             </div>
           )}
@@ -249,7 +249,7 @@ export const CheckoutModal: React.FC = () => {
           <button
             onClick={handlePlaceOrder}
             disabled={isSubmitting}
-            className="w-full h-12 rounded-[99px] bg-[#171717] text-white font-semibold text-sm flex items-center justify-center gap-2 hover:bg-[#FF641B] disabled:bg-[#858585] transition-colors"
+            className="w-full h-12 rounded-full bg-[#171717] text-white font-semibold text-sm flex items-center justify-center gap-2 hover:bg-[#05DF00] hover:text-black disabled:bg-[#858585] transition-colors"
           >
             {isSubmitting ? (
               <span className="flex items-center gap-2">

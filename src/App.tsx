@@ -32,11 +32,11 @@ function MainApp() {
   return (
     <div className="min-h-screen bg-[#F0F2F5] text-[#171717] flex flex-col items-center justify-start sm:py-6 selection:bg-[#FF641B]/20">
       {/* Top Device View Toggle on Desktop */}
-      <div className="hidden sm:flex items-center gap-2 mb-3 bg-white border border-[#E8E8E8] rounded-[99px] p-1 px-3 shadow-xs text-xs">
+      <div className="hidden sm:flex items-center gap-2 mb-3 bg-white border border-[#E8E8E8] rounded-full p-1 px-3 shadow-xs text-xs">
         <span className="text-[#858585] font-medium mr-1">Food101 Lagos:</span>
         <button
           onClick={() => setDeviceFrameMode(true)}
-          className={`flex items-center gap-1.5 px-3 py-1 rounded-[99px] font-semibold transition-colors ${
+          className={`flex items-center gap-1.5 px-3 py-1 rounded-full font-semibold transition-colors ${
             deviceFrameMode ? 'bg-[#171717] text-white' : 'text-[#626262] hover:text-[#171717]'
           }`}
         >
@@ -45,7 +45,7 @@ function MainApp() {
         </button>
         <button
           onClick={() => setDeviceFrameMode(false)}
-          className={`flex items-center gap-1.5 px-3 py-1 rounded-[99px] font-semibold transition-colors ${
+          className={`flex items-center gap-1.5 px-3 py-1 rounded-full font-semibold transition-colors ${
             !deviceFrameMode ? 'bg-[#171717] text-white' : 'text-[#626262] hover:text-[#171717]'
           }`}
         >
@@ -58,8 +58,8 @@ function MainApp() {
       <div
         className={`w-full bg-white transition-all duration-300 relative ${
           deviceFrameMode
-            ? 'max-w-[440px] sm:min-h-[860px] sm:rounded-[99px] sm:shadow-2xl sm:border sm:border-[#E8E8E8] overflow-hidden'
-            : 'max-w-xl min-h-screen sm:rounded-[99px] sm:shadow-xl sm:border sm:border-[#E8E8E8]'
+            ? 'max-w-[440px] sm:min-h-[860px] sm:rounded-[44px] sm:shadow-2xl sm:border sm:border-[#E8E8E8] overflow-hidden'
+            : 'max-w-xl min-h-screen sm:rounded-[44px] sm:shadow-xl sm:border sm:border-[#E8E8E8]'
         }`}
       >
         {/* Sticky Header with Location and Basket */}
@@ -96,7 +96,7 @@ function MainApp() {
 
         {/* Floating Toast Notification */}
         {toastMessage && (
-          <div className="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 bg-[#171717] text-white text-xs font-semibold px-4 py-2.5 rounded-[99px] shadow-xl border border-white/10 animate-in fade-in slide-in-from-bottom-2 duration-150 max-w-[340px] truncate">
+          <div className="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 bg-[#171717] text-white text-xs font-semibold px-4 py-2.5 rounded-full shadow-xl border border-white/10 animate-in fade-in slide-in-from-bottom-2 duration-150 max-w-[340px] truncate">
             {toastMessage}
           </div>
         )}

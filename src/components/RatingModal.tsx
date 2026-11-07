@@ -35,7 +35,7 @@ export const RatingModal: React.FC = () => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xs p-4 animate-in fade-in duration-200">
       <div
-        className="w-full max-w-[420px] bg-white rounded-[99px] p-6 shadow-2xl border border-[#E8E8E8] max-h-[90vh] overflow-y-auto no-scrollbar space-y-4"
+        className="w-full max-w-[420px] bg-white rounded-[28px] p-6 shadow-2xl border border-[#E8E8E8] max-h-[90vh] overflow-y-auto no-scrollbar space-y-4"
         role="dialog"
         aria-modal="true"
         aria-label="Rate your order"
@@ -49,14 +49,14 @@ export const RatingModal: React.FC = () => {
           </div>
           <button
             onClick={() => setRatingOrder(null)}
-            className="w-8 h-8 rounded-[99px] bg-[#F6F6F6] flex items-center justify-center text-[#171717]"
+            className="w-8 h-8 rounded-full bg-[#F6F6F6] flex items-center justify-center text-[#171717]"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* 1. Food & Restaurant Rating */}
-        <div className="bg-[#F6F6F6] rounded-[99px] p-4 text-center space-y-2">
+        <div className="bg-[#F6F6F6] rounded-[20px] p-4 text-center space-y-2">
           <div className="text-xs font-bold text-[#171717]">How was the food?</div>
           <div className="flex justify-center gap-1.5">
             {[1, 2, 3, 4, 5].map((star) => (
@@ -84,7 +84,7 @@ export const RatingModal: React.FC = () => {
                   key={tag}
                   type="button"
                   onClick={() => toggleFoodTag(tag)}
-                  className={`px-2.5 py-1 rounded-[99px] text-[11px] font-semibold border transition-colors ${
+                  className={`px-2.5 py-1 rounded-full text-[11px] font-semibold border transition-colors ${
                     active
                       ? 'bg-[#171717] text-white border-[#171717]'
                       : 'bg-white text-[#626262] border-[#E8E8E8]'
@@ -98,7 +98,7 @@ export const RatingModal: React.FC = () => {
         </div>
 
         {/* 2. Rider Rating */}
-        <div className="bg-[#F6F6F6] rounded-[99px] p-4 text-center space-y-2">
+        <div className="bg-[#F6F6F6] rounded-[20px] p-4 text-center space-y-2">
           <div className="text-xs font-bold text-[#171717]">How was delivery by Babatunde?</div>
           <div className="flex justify-center gap-1.5">
             {[1, 2, 3, 4, 5].map((star) => (
@@ -111,7 +111,7 @@ export const RatingModal: React.FC = () => {
                 <Star
                   className={`w-6 h-6 ${
                     star <= riderRating
-                      ? 'fill-[#12E600] text-[#12E600]'
+                      ? 'fill-[#05DF00] text-[#05DF00]'
                       : 'text-[#E8E8E8]'
                   }`}
                 />
@@ -126,7 +126,7 @@ export const RatingModal: React.FC = () => {
                   key={tag}
                   type="button"
                   onClick={() => toggleRiderTag(tag)}
-                  className={`px-2.5 py-1 rounded-[99px] text-[11px] font-semibold border transition-colors ${
+                  className={`px-2.5 py-1 rounded-full text-[11px] font-semibold border transition-colors ${
                     active
                       ? 'bg-[#171717] text-white border-[#171717]'
                       : 'bg-white text-[#626262] border-[#E8E8E8]'
@@ -145,13 +145,13 @@ export const RatingModal: React.FC = () => {
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           placeholder="Leave a short comment (optional)..."
-          className="w-full bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] px-4 py-2 text-xs text-[#171717] placeholder-[#858585] focus:outline-hidden"
+          className="w-full bg-[#F6F6F6] border border-[#E8E8E8] rounded-full px-4 py-2 text-xs text-[#171717] placeholder-[#858585] focus:outline-hidden"
         />
 
         {/* Submit */}
         <button
           onClick={handleSubmit}
-          className="w-full h-11 bg-[#171717] text-white text-xs font-semibold rounded-[99px] hover:bg-[#FF641B] transition-colors"
+          className="w-full h-11 bg-[#171717] text-white text-xs font-semibold rounded-full hover:bg-[#05DF00] hover:text-black transition-colors"
         >
           Submit review
         </button>

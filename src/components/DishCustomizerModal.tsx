@@ -94,17 +94,17 @@ export const DishCustomizerModal: React.FC = () => {
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 backdrop-blur-xs animate-in fade-in duration-200">
       <div
-        className="w-full max-w-[440px] bg-white rounded-t-[99px] border-t border-[#E8E8E8] shadow-2xl max-h-[90vh] flex flex-col overflow-hidden animate-in slide-in-from-bottom duration-250"
+        className="w-full max-w-[440px] bg-white rounded-t-[28px] border-t border-[#E8E8E8] shadow-2xl max-h-[90vh] flex flex-col overflow-hidden animate-in slide-in-from-bottom duration-250"
         role="dialog"
         aria-modal="true"
         aria-label={`Customize ${customizingDish.name}`}
       >
         {/* Drag handle / top bar */}
         <div className="pt-3 pb-1 flex flex-col items-center relative">
-          <div className="w-10 h-1 bg-[#E8E8E8] rounded-[99px]" />
+          <div className="w-10 h-1 bg-[#E8E8E8] rounded-full" />
           <button
             onClick={() => setCustomizingDish(null)}
-            className="absolute top-2 right-4 w-9 h-9 rounded-[99px] bg-[#F6F6F6] border border-[#E8E8E8] flex items-center justify-center text-[#171717] hover:bg-[#E8E8E8]"
+            className="absolute top-2 right-4 w-9 h-9 rounded-full bg-[#F6F6F6] border border-[#E8E8E8] flex items-center justify-center text-[#171717] hover:bg-[#E8E8E8]"
             aria-label="Close dialog"
           >
             <X className="w-4 h-4" />
@@ -113,8 +113,8 @@ export const DishCustomizerModal: React.FC = () => {
 
         {/* Scrollable Content */}
         <div className="overflow-y-auto px-6 py-3 space-y-5 no-scrollbar">
-          {/* Dish Image Banner with 99px radius */}
-          <div className="w-full h-44 rounded-[99px] bg-[#F6F6F6] border border-[#E8E8E8] overflow-hidden flex items-center justify-center">
+          {/* Dish Image Banner with 22px radius */}
+          <div className="w-full h-48 rounded-[22px] bg-[#F4F4F6] border border-[#E8E8E8] overflow-hidden flex items-center justify-center">
             {imageError ? (
               <Utensils className="w-10 h-10 text-[#858585]" />
             ) : (
@@ -150,7 +150,7 @@ export const DishCustomizerModal: React.FC = () => {
                 <div className="flex items-center justify-between mb-2.5">
                   <h3 className="text-sm font-bold text-[#171717]">{group.name}</h3>
                   <span
-                    className={`text-[11px] font-semibold px-2 py-0.5 rounded-[99px] ${
+                    className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${
                       group.required
                         ? 'bg-[#171717] text-white'
                         : 'bg-[#F6F6F6] text-[#858585] border border-[#E8E8E8]'
@@ -168,7 +168,7 @@ export const DishCustomizerModal: React.FC = () => {
                         key={choice.id}
                         type="button"
                         onClick={() => handleSelectChoice(group.id, choice, group.required)}
-                        className={`w-full p-3 px-4 rounded-[99px] border flex items-center justify-between transition-colors text-left ${
+                        className={`w-full p-3 px-4 rounded-[16px] border flex items-center justify-between transition-colors text-left ${
                           isSelected
                             ? 'bg-[#171717] text-white border-[#171717]'
                             : 'bg-white text-[#171717] border-[#E8E8E8] hover:border-[#171717]'
@@ -176,9 +176,9 @@ export const DishCustomizerModal: React.FC = () => {
                       >
                         <div className="flex items-center gap-2.5">
                           <div
-                            className={`w-4 h-4 rounded-[99px] border flex items-center justify-center shrink-0 ${
+                            className={`w-4 h-4 rounded-full border flex items-center justify-center shrink-0 ${
                               isSelected
-                                ? 'border-[#FF641B] bg-[#FF641B] text-white'
+                                ? 'border-[#05DF00] bg-[#05DF00] text-black'
                                 : 'border-[#858585]'
                             }`}
                           >
@@ -190,7 +190,7 @@ export const DishCustomizerModal: React.FC = () => {
                         {choice.priceDelta > 0 && (
                           <span
                             className={`text-xs font-semibold tabular-nums ${
-                              isSelected ? 'text-[#FF641B]' : 'text-[#626262]'
+                              isSelected ? 'text-[#05DF00]' : 'text-[#626262]'
                             }`}
                           >
                             +₦{choice.priceDelta.toLocaleString()}
@@ -218,19 +218,19 @@ export const DishCustomizerModal: React.FC = () => {
               value={specialInstructions}
               onChange={(e) => setSpecialInstructions(e.target.value)}
               placeholder="e.g. Extra spicy, no onions, pack stew separately"
-              className="w-full bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] px-4 py-2.5 text-xs text-[#171717] placeholder-[#858585] focus:outline-hidden focus:border-[#171717]"
+              className="w-full bg-[#F6F6F6] border border-[#E8E8E8] rounded-full px-4 py-2.5 text-xs text-[#171717] placeholder-[#858585] focus:outline-hidden focus:border-[#171717]"
             />
           </div>
         </div>
 
-        {/* Sticky Action Footer with 99px button */}
+        {/* Sticky Action Footer */}
         <div className="p-4 border-t border-[#E8E8E8] bg-white flex items-center gap-3">
           {/* Quantity Stepper */}
-          <div className="flex items-center gap-2 bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] p-1.5 shrink-0">
+          <div className="flex items-center gap-2 bg-[#F6F6F6] border border-[#E8E8E8] rounded-full p-1.5 shrink-0">
             <button
               onClick={() => setQuantity((q) => Math.max(1, q - 1))}
               disabled={quantity <= 1}
-              className="w-8 h-8 rounded-[99px] bg-white border border-[#E8E8E8] flex items-center justify-center text-[#171717] disabled:opacity-30"
+              className="w-8 h-8 rounded-full bg-white border border-[#E8E8E8] flex items-center justify-center text-[#171717] disabled:opacity-30"
               aria-label="Decrease quantity"
             >
               <Minus className="w-3.5 h-3.5" />
@@ -240,7 +240,7 @@ export const DishCustomizerModal: React.FC = () => {
             </span>
             <button
               onClick={() => setQuantity((q) => q + 1)}
-              className="w-8 h-8 rounded-[99px] bg-white border border-[#E8E8E8] flex items-center justify-center text-[#171717]"
+              className="w-8 h-8 rounded-full bg-white border border-[#E8E8E8] flex items-center justify-center text-[#171717]"
               aria-label="Increase quantity"
             >
               <Plus className="w-3.5 h-3.5" />
@@ -251,7 +251,7 @@ export const DishCustomizerModal: React.FC = () => {
           <button
             onClick={handleAdd}
             disabled={!isRequiredSatisfied}
-            className="flex-1 h-12 rounded-[99px] bg-[#171717] text-white font-semibold text-sm flex items-center justify-center gap-2 hover:bg-[#FF641B] disabled:bg-[#858585] disabled:cursor-not-allowed transition-colors"
+            className="flex-1 h-12 rounded-full bg-[#171717] text-white font-semibold text-sm flex items-center justify-center gap-2 hover:bg-[#05DF00] hover:text-black disabled:bg-[#858585] disabled:cursor-not-allowed transition-colors"
           >
             <span>Add to basket</span>
             <span aria-hidden="true">·</span>

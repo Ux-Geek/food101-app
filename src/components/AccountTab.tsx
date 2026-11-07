@@ -52,7 +52,7 @@ export const AccountTab: React.FC = () => {
         <div className="flex items-center gap-3">
           <button
             onClick={() => setActiveSubView('hub')}
-            className="w-9 h-9 rounded-[99px] bg-[#F6F6F6] border border-[#E8E8E8] flex items-center justify-center text-[#171717]"
+            className="w-9 h-9 rounded-full bg-[#F6F6F6] border border-[#E8E8E8] flex items-center justify-center text-[#171717]"
           >
             ←
           </button>
@@ -60,10 +60,10 @@ export const AccountTab: React.FC = () => {
         </div>
 
         {/* Segmented Orders Tabs */}
-        <div className="flex bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] p-1">
+        <div className="flex bg-[#F6F6F6] border border-[#E8E8E8] rounded-full p-1">
           <button
             onClick={() => setOrderTab('active')}
-            className={`flex-1 py-1.5 rounded-[99px] text-xs font-semibold transition-colors ${
+            className={`flex-1 py-1.5 rounded-full text-xs font-semibold transition-colors ${
               orderTab === 'active'
                 ? 'bg-[#171717] text-white'
                 : 'text-[#626262] hover:text-[#171717]'
@@ -73,7 +73,7 @@ export const AccountTab: React.FC = () => {
           </button>
           <button
             onClick={() => setOrderTab('past')}
-            className={`flex-1 py-1.5 rounded-[99px] text-xs font-semibold transition-colors ${
+            className={`flex-1 py-1.5 rounded-full text-xs font-semibold transition-colors ${
               orderTab === 'past'
                 ? 'bg-[#171717] text-white'
                 : 'text-[#626262] hover:text-[#171717]'
@@ -85,7 +85,7 @@ export const AccountTab: React.FC = () => {
 
         {orderTab === 'active' ? (
           activeOrder ? (
-            <div className="bg-[#12E600] text-[#171717] rounded-[99px] p-5 border border-[#12E600] shadow-sm space-y-3">
+            <div className="bg-[#00DF00] text-[#171717] rounded-[24px] p-5 shadow-sm space-y-3">
               <div className="flex items-center justify-between">
                 <div>
                   <div className="text-xs font-bold uppercase tracking-wider text-[#171717]/80">
@@ -108,7 +108,7 @@ export const AccountTab: React.FC = () => {
                 </span>
                 <button
                   onClick={() => setIsTrackingOpen(true)}
-                  className="px-3.5 py-1.5 bg-[#171717] text-white text-xs font-bold rounded-[99px]"
+                  className="px-3.5 py-1.5 bg-[#171717] text-white text-xs font-bold rounded-full"
                 >
                   Track order
                 </button>
@@ -124,7 +124,7 @@ export const AccountTab: React.FC = () => {
             {orderHistory.map((order) => (
               <div
                 key={order.id}
-                className="bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] p-4 px-5 space-y-2.5"
+                className="bg-[#F6F6F6] border border-[#E8E8E8] rounded-[20px] p-4 px-5 space-y-2.5"
               >
                 <div className="flex items-center justify-between">
                   <div>
@@ -152,7 +152,7 @@ export const AccountTab: React.FC = () => {
 
                   <button
                     onClick={() => reorderPastOrder(order)}
-                    className="px-3.5 py-1.5 bg-[#171717] text-white text-xs font-bold rounded-[99px] hover:bg-[#FF641B] transition-colors"
+                    className="px-3.5 py-1.5 bg-[#171717] text-white text-xs font-bold rounded-full hover:bg-[#05DF00] hover:text-black transition-colors"
                   >
                     Reorder
                   </button>
@@ -171,7 +171,7 @@ export const AccountTab: React.FC = () => {
         <div className="flex items-center gap-3">
           <button
             onClick={() => setActiveSubView('hub')}
-            className="w-9 h-9 rounded-[99px] bg-[#F6F6F6] border border-[#E8E8E8] flex items-center justify-center text-[#171717]"
+            className="w-9 h-9 rounded-full bg-[#F6F6F6] border border-[#E8E8E8] flex items-center justify-center text-[#171717]"
           >
             ←
           </button>
@@ -191,7 +191,7 @@ export const AccountTab: React.FC = () => {
                   <div
                     key={dish.id}
                     onClick={() => setCustomizingDish(dish)}
-                    className="cursor-pointer bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] p-3 px-4 flex items-center justify-between"
+                    className="cursor-pointer bg-[#F6F6F6] border border-[#E8E8E8] rounded-[18px] p-3 px-4 flex items-center justify-between"
                   >
                     <div>
                       <div className="text-sm font-bold text-[#171717]">{dish.name}</div>
@@ -218,7 +218,7 @@ export const AccountTab: React.FC = () => {
                   <div
                     key={r.id}
                     onClick={() => setSelectedRestaurant(r)}
-                    className="cursor-pointer bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] p-3 px-4 flex items-center justify-between"
+                    className="cursor-pointer bg-[#F6F6F6] border border-[#E8E8E8] rounded-[18px] p-3 px-4 flex items-center justify-between"
                   >
                     <div>
                       <div className="text-sm font-bold text-[#171717]">{r.name}</div>
@@ -241,17 +241,17 @@ export const AccountTab: React.FC = () => {
         <div className="flex items-center gap-3">
           <button
             onClick={() => setActiveSubView('hub')}
-            className="w-9 h-9 rounded-[99px] bg-[#F6F6F6] border border-[#E8E8E8] flex items-center justify-center text-[#171717]"
+            className="w-9 h-9 rounded-full bg-[#F6F6F6] border border-[#E8E8E8] flex items-center justify-center text-[#171717]"
           >
             ←
           </button>
           <h1 className="text-lg font-bold text-[#171717]">Refund Tracker</h1>
         </div>
 
-        <div className="bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] p-5 space-y-3">
+        <div className="bg-[#F6F6F6] border border-[#E8E8E8] rounded-[22px] p-5 space-y-3">
           <div className="flex justify-between items-start">
             <div>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-[#12E600] bg-[#171717] px-2 py-0.5 rounded-[99px]">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#05DF00] bg-[#171717] px-2 py-0.5 rounded-full">
                 Approved
               </span>
               <h3 className="text-base font-bold text-[#171717] mt-1.5">
@@ -284,16 +284,16 @@ export const AccountTab: React.FC = () => {
   // Default Hub View (Screen 19)
   return (
     <div className="pb-32 px-5 space-y-5 pt-3">
-      {/* Profile Card with 99px radius */}
-      <div className="bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] p-5 flex items-center justify-between">
+      {/* Profile Card */}
+      <div className="bg-[#F6F6F6] border border-[#E8E8E8] rounded-[24px] p-5 flex items-center justify-between">
         <div className="flex items-center gap-3.5">
-          <div className="w-13 h-13 rounded-[99px] bg-[#171717] text-white flex items-center justify-center font-bold text-lg">
+          <div className="w-13 h-13 rounded-full bg-[#171717] text-white flex items-center justify-center font-bold text-lg">
             {user.name.charAt(0)}
           </div>
           <div>
             <h2 className="text-base font-bold text-[#171717]">{user.name}</h2>
             <p className="text-xs text-[#858585]">{user.phone}</p>
-            <span className="text-[10px] font-semibold text-[#FF641B] mt-0.5 inline-block">
+            <span className="text-[10px] font-semibold text-[#05DF00] mt-0.5 inline-block">
               Food101 Member · Lagos
             </span>
           </div>
@@ -309,7 +309,7 @@ export const AccountTab: React.FC = () => {
               showToast('Switched to Guest mode');
             }
           }}
-          className="text-xs font-semibold text-[#171717] bg-white border border-[#E8E8E8] px-3 py-1.5 rounded-[99px] hover:border-[#171717]"
+          className="text-xs font-semibold text-[#171717] bg-white border border-[#E8E8E8] px-3.5 py-1.5 rounded-full hover:border-[#171717]"
         >
           {user.isGuest ? 'Sign in' : 'Switch Mode'}
         </button>
@@ -319,7 +319,7 @@ export const AccountTab: React.FC = () => {
       <div className="space-y-2">
         <button
           onClick={() => setActiveSubView('orders')}
-          className="w-full bg-white border border-[#E8E8E8] hover:border-[#171717] rounded-[99px] p-3.5 px-5 flex items-center justify-between transition-colors text-left"
+          className="w-full bg-white border border-[#E8E8E8] hover:border-[#171717] rounded-[18px] p-3.5 px-5 flex items-center justify-between transition-colors text-left"
         >
           <div className="flex items-center gap-3">
             <ShoppingBag className="w-4 h-4 text-[#FF641B]" />
@@ -327,7 +327,7 @@ export const AccountTab: React.FC = () => {
           </div>
           <div className="flex items-center gap-2">
             {activeOrder && (
-              <span className="text-[10px] font-bold text-[#171717] bg-[#12E600] px-2 py-0.5 rounded-[99px]">
+              <span className="text-[10px] font-bold text-[#171717] bg-[#05DF00] px-2 py-0.5 rounded-full">
                 1 Active
               </span>
             )}
@@ -337,7 +337,7 @@ export const AccountTab: React.FC = () => {
 
         <button
           onClick={() => setIsAddressSelectorOpen(true)}
-          className="w-full bg-white border border-[#E8E8E8] hover:border-[#171717] rounded-[99px] p-3.5 px-5 flex items-center justify-between transition-colors text-left"
+          className="w-full bg-white border border-[#E8E8E8] hover:border-[#171717] rounded-[18px] p-3.5 px-5 flex items-center justify-between transition-colors text-left"
         >
           <div className="flex items-center gap-3">
             <MapPin className="w-4 h-4 text-[#FF641B]" />
@@ -351,7 +351,7 @@ export const AccountTab: React.FC = () => {
 
         <button
           onClick={() => setActiveSubView('favourites')}
-          className="w-full bg-white border border-[#E8E8E8] hover:border-[#171717] rounded-[99px] p-3.5 px-5 flex items-center justify-between transition-colors text-left"
+          className="w-full bg-white border border-[#E8E8E8] hover:border-[#171717] rounded-[18px] p-3.5 px-5 flex items-center justify-between transition-colors text-left"
         >
           <div className="flex items-center gap-3">
             <Heart className="w-4 h-4 text-[#FF641B]" />
@@ -365,10 +365,10 @@ export const AccountTab: React.FC = () => {
 
         <button
           onClick={() => setActiveSubView('refunds')}
-          className="w-full bg-white border border-[#E8E8E8] hover:border-[#171717] rounded-[99px] p-3.5 px-5 flex items-center justify-between transition-colors text-left"
+          className="w-full bg-white border border-[#E8E8E8] hover:border-[#171717] rounded-[18px] p-3.5 px-5 flex items-center justify-between transition-colors text-left"
         >
           <div className="flex items-center gap-3">
-            <RotateCcw className="w-4 h-4 text-[#12E600]" />
+            <RotateCcw className="w-4 h-4 text-[#05DF00]" />
             <span className="text-sm font-semibold text-[#171717]">Refund tracking</span>
           </div>
           <ChevronRight className="w-4 h-4 text-[#858585]" />
@@ -378,7 +378,7 @@ export const AccountTab: React.FC = () => {
           onClick={() => {
             showToast('Help & Support: 24/7 WhatsApp concierge available');
           }}
-          className="w-full bg-white border border-[#E8E8E8] hover:border-[#171717] rounded-[99px] p-3.5 px-5 flex items-center justify-between transition-colors text-left"
+          className="w-full bg-white border border-[#E8E8E8] hover:border-[#171717] rounded-[18px] p-3.5 px-5 flex items-center justify-between transition-colors text-left"
         >
           <div className="flex items-center gap-3">
             <HelpCircle className="w-4 h-4 text-[#858585]" />

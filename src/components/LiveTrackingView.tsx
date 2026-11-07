@@ -70,7 +70,7 @@ export const LiveTrackingView: React.FC = () => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs animate-in fade-in duration-200">
       <div
-        className="w-full max-w-[440px] h-full sm:h-[94vh] bg-white sm:rounded-[99px] shadow-2xl flex flex-col overflow-hidden relative"
+        className="w-full max-w-[440px] h-full sm:h-[94vh] bg-white sm:rounded-[36px] shadow-2xl flex flex-col overflow-hidden relative"
         role="dialog"
         aria-modal="true"
         aria-label="Order Tracking"
@@ -79,19 +79,19 @@ export const LiveTrackingView: React.FC = () => {
         <div className="absolute top-4 left-4 right-4 z-20 flex items-center justify-between pointer-events-auto">
           <button
             onClick={() => setIsTrackingOpen(false)}
-            className="w-10 h-10 rounded-[99px] bg-white border border-[#E8E8E8] shadow-md flex items-center justify-center text-[#171717] hover:bg-[#F6F6F6]"
+            className="w-10 h-10 rounded-full bg-white border border-[#E8E8E8] shadow-md flex items-center justify-center text-[#171717] hover:bg-[#F6F6F6]"
             aria-label="Close tracking"
           >
             <X className="w-4 h-4" />
           </button>
 
-          <div className="bg-white/95 backdrop-blur-xs border border-[#E8E8E8] shadow-md px-4 py-1.5 rounded-[99px] text-xs font-bold text-[#171717]">
+          <div className="bg-white/95 backdrop-blur-xs border border-[#E8E8E8] shadow-md px-4 py-1.5 rounded-full text-xs font-bold text-[#171717]">
             Order #{activeOrder.id}
           </div>
 
           <button
             onClick={() => setShowIssueModal(true)}
-            className="w-10 h-10 rounded-[99px] bg-white border border-[#E8E8E8] shadow-md flex items-center justify-center text-[#171717] hover:bg-[#F6F6F6]"
+            className="w-10 h-10 rounded-full bg-white border border-[#E8E8E8] shadow-md flex items-center justify-center text-[#171717] hover:bg-[#F6F6F6]"
             aria-label="Report issue"
           >
             <AlertTriangle className="w-4 h-4 text-[#858585]" />
@@ -121,20 +121,20 @@ export const LiveTrackingView: React.FC = () => {
 
           {/* Restaurant Pin */}
           <div className="absolute left-[30px] top-[140px] z-10 flex flex-col items-center">
-            <div className="w-8 h-8 rounded-[99px] bg-[#171717] text-white flex items-center justify-center shadow-md">
+            <div className="w-8 h-8 rounded-full bg-[#171717] text-white flex items-center justify-center shadow-md">
               <Store className="w-4 h-4 text-white" />
             </div>
-            <span className="text-[10px] font-bold text-[#171717] bg-white px-2 py-0.5 rounded-[99px] shadow-xs mt-1 border border-[#E8E8E8] max-w-[90px] truncate">
+            <span className="text-[10px] font-bold text-[#171717] bg-white px-2 py-0.5 rounded-full shadow-xs mt-1 border border-[#E8E8E8] max-w-[90px] truncate">
               {activeOrder.restaurantName}
             </span>
           </div>
 
           {/* Destination Pin */}
           <div className="absolute right-[35px] top-[20px] z-10 flex flex-col items-center">
-            <div className="w-8 h-8 rounded-[99px] bg-[#FF641B] text-white flex items-center justify-center shadow-md">
+            <div className="w-8 h-8 rounded-full bg-[#FF641B] text-white flex items-center justify-center shadow-md">
               <MapPin className="w-4 h-4 text-white" />
             </div>
-            <span className="text-[10px] font-bold text-[#171717] bg-white px-2 py-0.5 rounded-[99px] shadow-xs mt-1 border border-[#E8E8E8]">
+            <span className="text-[10px] font-bold text-[#171717] bg-white px-2 py-0.5 rounded-full shadow-xs mt-1 border border-[#E8E8E8]">
               {activeOrder.deliveryAddress.label}
             </span>
           </div>
@@ -148,10 +148,10 @@ export const LiveTrackingView: React.FC = () => {
                 top: `${riderY - 16}px`,
               }}
             >
-              <div className="w-9 h-9 rounded-[99px] bg-[#12E600] text-[#171717] border-2 border-white shadow-lg flex items-center justify-center font-bold">
+              <div className="w-9 h-9 rounded-full bg-[#05DF00] text-[#171717] border-2 border-white shadow-lg flex items-center justify-center font-bold">
                 <Navigation className="w-4 h-4 fill-current rotate-45" />
               </div>
-              <span className="text-[9px] font-bold text-[#171717] bg-white px-2 py-0.5 rounded-[99px] shadow-xs mt-0.5 border border-[#E8E8E8]">
+              <span className="text-[9px] font-bold text-[#171717] bg-white px-2 py-0.5 rounded-full shadow-xs mt-0.5 border border-[#E8E8E8]">
                 Babatunde
               </span>
             </div>
@@ -166,7 +166,7 @@ export const LiveTrackingView: React.FC = () => {
         {/* Scrollable Tracking Content */}
         <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4 no-scrollbar">
           {/* Distinctive Electric-Green Delivery Tracker Card */}
-          <div className="bg-[#12E600] text-[#171717] rounded-[99px] p-5 border border-[#12E600] shadow-sm flex items-center justify-between">
+          <div className="bg-[#00DF00] text-[#171717] rounded-[24px] p-5 shadow-sm flex items-center justify-between">
             <div>
               <div className="text-xs font-bold uppercase tracking-wider text-[#171717]/80">
                 {isDelivered
@@ -191,9 +191,9 @@ export const LiveTrackingView: React.FC = () => {
 
           {/* Rider Information Card */}
           {activeOrder.rider && (
-            <div className="bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] p-3 px-4 flex items-center justify-between">
+            <div className="bg-[#F6F6F6] border border-[#E8E8E8] rounded-[22px] p-3 px-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-[99px] bg-white border border-[#E8E8E8] flex items-center justify-center font-bold text-sm text-[#171717]">
+                <div className="w-11 h-11 rounded-full bg-white border border-[#E8E8E8] flex items-center justify-center font-bold text-sm text-[#171717]">
                   {activeOrder.rider.name.charAt(0)}
                 </div>
                 <div>
@@ -201,7 +201,7 @@ export const LiveTrackingView: React.FC = () => {
                     <span className="text-sm font-bold text-[#171717]">
                       {activeOrder.rider.name}
                     </span>
-                    <span className="text-[10px] font-bold text-[#171717] bg-[#12E600] px-1.5 py-0.2 rounded-[99px]">
+                    <span className="text-[10px] font-bold text-[#171717] bg-[#05DF00] px-1.5 py-0.2 rounded-full">
                       ★ {activeOrder.rider.rating}
                     </span>
                   </div>
@@ -215,14 +215,14 @@ export const LiveTrackingView: React.FC = () => {
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setShowRiderContactModal(true)}
-                  className="w-9 h-9 rounded-[99px] bg-white border border-[#E8E8E8] flex items-center justify-center text-[#171717] hover:bg-[#171717] hover:text-white transition-colors"
+                  className="w-9 h-9 rounded-full bg-white border border-[#E8E8E8] flex items-center justify-center text-[#171717] hover:bg-[#171717] hover:text-white transition-colors"
                   aria-label="Call rider"
                 >
                   <Phone className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => setShowRiderContactModal(true)}
-                  className="w-9 h-9 rounded-[99px] bg-white border border-[#E8E8E8] flex items-center justify-center text-[#171717] hover:bg-[#171717] hover:text-white transition-colors"
+                  className="w-9 h-9 rounded-full bg-white border border-[#E8E8E8] flex items-center justify-center text-[#171717] hover:bg-[#171717] hover:text-white transition-colors"
                   aria-label="Message rider"
                 >
                   <MessageSquare className="w-4 h-4" />
@@ -232,7 +232,7 @@ export const LiveTrackingView: React.FC = () => {
           )}
 
           {/* 8-Stage Tracking State Progress Timeline */}
-          <div className="bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] p-4 px-5">
+          <div className="bg-[#F6F6F6] border border-[#E8E8E8] rounded-[22px] p-4 px-5">
             <div className="text-xs font-bold text-[#858585] uppercase tracking-wide mb-3">
               Delivery progress
             </div>
@@ -248,16 +248,16 @@ export const LiveTrackingView: React.FC = () => {
                     {idx < STATUS_STEPS.length - 1 && (
                       <div
                         className={`absolute -left-[18px] top-4 w-0.5 h-7 ${
-                          idx < currentStepIndex ? 'bg-[#12E600]' : 'bg-[#E8E8E8]'
+                          idx < currentStepIndex ? 'bg-[#05DF00]' : 'bg-[#E8E8E8]'
                         }`}
                       />
                     )}
 
                     {/* Step Dot */}
                     <div
-                      className={`absolute -left-6 top-1 w-4 h-4 rounded-[99px] flex items-center justify-center ${
+                      className={`absolute -left-6 top-1 w-4 h-4 rounded-full flex items-center justify-center ${
                         isPassed
-                          ? 'bg-[#12E600] text-[#171717]'
+                          ? 'bg-[#05DF00] text-[#171717]'
                           : 'bg-white border border-[#E8E8E8]'
                       }`}
                     >
@@ -280,7 +280,7 @@ export const LiveTrackingView: React.FC = () => {
                     </div>
 
                     {isCurrent && (
-                      <span className="text-[10px] font-bold text-[#171717] bg-[#12E600] px-2 py-0.5 rounded-[99px]">
+                      <span className="text-[10px] font-bold text-[#171717] bg-[#05DF00] px-2 py-0.5 rounded-full">
                         Current
                       </span>
                     )}
@@ -291,14 +291,14 @@ export const LiveTrackingView: React.FC = () => {
           </div>
 
           {/* Order Details Summary Accordion */}
-          <div className="bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] p-4 px-5">
+          <div className="bg-[#F6F6F6] border border-[#E8E8E8] rounded-[22px] p-4 px-5">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-bold text-[#858585] uppercase tracking-wide">
                 Items ({activeOrder.items.length})
               </span>
               <button
                 onClick={() => setViewingReceiptOrder(activeOrder)}
-                className="text-xs font-semibold text-[#FF641B] hover:underline"
+                className="text-xs font-semibold text-[#05DF00] hover:underline"
               >
                 View receipt
               </button>
@@ -324,7 +324,7 @@ export const LiveTrackingView: React.FC = () => {
           </div>
 
           {/* Interactive Simulation Bar for QA Testing */}
-          <div className="bg-white border border-[#E8E8E8] rounded-[99px] p-3 px-4 flex items-center justify-between gap-2">
+          <div className="bg-white border border-[#E8E8E8] rounded-full p-3 px-4 flex items-center justify-between gap-2">
             <span className="text-[11px] font-semibold text-[#858585]">
               Simulate delivery:
             </span>
@@ -332,14 +332,14 @@ export const LiveTrackingView: React.FC = () => {
               <button
                 onClick={advanceTrackingStage}
                 disabled={isDelivered}
-                className="px-3 py-1.5 bg-[#171717] text-white text-xs font-semibold rounded-[99px] hover:bg-[#FF641B] disabled:opacity-40 transition-colors"
+                className="px-3 py-1.5 bg-[#171717] text-white text-xs font-semibold rounded-full hover:bg-[#05DF00] hover:text-black disabled:opacity-40 transition-colors"
               >
                 Next Stage →
               </button>
               {isDelivered && (
                 <button
                   onClick={() => setRatingOrder(activeOrder)}
-                  className="px-3 py-1.5 bg-[#FF641B] text-white text-xs font-semibold rounded-[99px]"
+                  className="px-3 py-1.5 bg-[#05DF00] text-black text-xs font-semibold rounded-full"
                 >
                   Rate Order
                 </button>
@@ -363,7 +363,7 @@ export const LiveTrackingView: React.FC = () => {
         {/* Cancellation Confirmation Modal */}
         {showCancelPrompt && (
           <div className="absolute inset-0 z-30 bg-black/50 backdrop-blur-xs flex items-end sm:items-center justify-center p-4">
-            <div className="bg-white rounded-[99px] p-6 max-w-sm w-full border border-[#E8E8E8] shadow-2xl text-center space-y-3">
+            <div className="bg-white rounded-[28px] p-6 max-w-sm w-full border border-[#E8E8E8] shadow-2xl text-center space-y-3">
               <h3 className="text-base font-bold text-[#171717]">Cancel order #{activeOrder.id}?</h3>
               <p className="text-xs text-[#626262]">
                 The kitchen has not yet completed preparation. You are eligible for a full refund of ₦
@@ -372,13 +372,13 @@ export const LiveTrackingView: React.FC = () => {
               <div className="pt-2 flex flex-col gap-2">
                 <button
                   onClick={handleCancel}
-                  className="w-full h-11 bg-[#D92D20] text-white rounded-[99px] text-xs font-semibold"
+                  className="w-full h-11 bg-[#D92D20] text-white rounded-full text-xs font-semibold"
                 >
                   Confirm cancellation
                 </button>
                 <button
                   onClick={() => setShowCancelPrompt(false)}
-                  className="w-full h-11 bg-[#F6F6F6] text-[#171717] rounded-[99px] text-xs font-semibold"
+                  className="w-full h-11 bg-[#F6F6F6] text-[#171717] rounded-full text-xs font-semibold"
                 >
                   Keep order
                 </button>
@@ -390,12 +390,12 @@ export const LiveTrackingView: React.FC = () => {
         {/* Rider Contact Modal */}
         {showRiderContactModal && (
           <div className="absolute inset-0 z-30 bg-black/50 backdrop-blur-xs flex items-end sm:items-center justify-center p-4">
-            <div className="bg-white rounded-[99px] p-6 max-w-sm w-full border border-[#E8E8E8] shadow-2xl text-center space-y-3">
+            <div className="bg-white rounded-[28px] p-6 max-w-sm w-full border border-[#E8E8E8] shadow-2xl text-center space-y-3">
               <h3 className="text-base font-bold text-[#171717]">Contact Babatunde</h3>
               <p className="text-xs text-[#626262]">
                 Your rider is on a motorbike with your order from {activeOrder.restaurantName}.
               </p>
-              <div className="p-3 bg-[#F6F6F6] rounded-[99px] text-xs font-mono font-bold text-[#171717]">
+              <div className="p-3 bg-[#F6F6F6] rounded-full text-xs font-mono font-bold text-[#171717]">
                 +234 812 345 6789
               </div>
               <div className="pt-2 flex flex-col gap-2">
@@ -404,7 +404,7 @@ export const LiveTrackingView: React.FC = () => {
                     showToast('Calling rider (+234 812 345 6789)...');
                     setShowRiderContactModal(false);
                   }}
-                  className="w-full h-11 bg-[#171717] text-white rounded-[99px] text-xs font-semibold"
+                  className="w-full h-11 bg-[#171717] text-white rounded-full text-xs font-semibold hover:bg-[#05DF00] hover:text-black transition-colors"
                 >
                   Call rider
                 </button>
@@ -413,7 +413,7 @@ export const LiveTrackingView: React.FC = () => {
                     showToast('Delivery note sent to rider: "Buzzer at the gate"');
                     setShowRiderContactModal(false);
                   }}
-                  className="w-full h-11 bg-[#F6F6F6] text-[#171717] rounded-[99px] text-xs font-semibold"
+                  className="w-full h-11 bg-[#F6F6F6] text-[#171717] rounded-full text-xs font-semibold"
                 >
                   Send instructions SMS
                 </button>
@@ -431,7 +431,7 @@ export const LiveTrackingView: React.FC = () => {
         {/* Issue Reporting Modal (Screen 28) */}
         {showIssueModal && (
           <div className="absolute inset-0 z-30 bg-black/50 backdrop-blur-xs flex items-end sm:items-center justify-center p-4">
-            <div className="bg-white rounded-[99px] p-6 max-w-sm w-full border border-[#E8E8E8] shadow-2xl text-center space-y-3">
+            <div className="bg-white rounded-[28px] p-6 max-w-sm w-full border border-[#E8E8E8] shadow-2xl text-center space-y-3">
               <h3 className="text-base font-bold text-[#171717]">Report an issue</h3>
               <p className="text-xs text-[#626262]">
                 Order #{activeOrder.id} with {activeOrder.restaurantName}
@@ -445,7 +445,7 @@ export const LiveTrackingView: React.FC = () => {
                         showToast(`Support ticket opened: "${issue}"`);
                         setShowIssueModal(false);
                       }}
-                      className="w-full p-2.5 px-4 bg-[#F6F6F6] hover:bg-[#E8E8E8] rounded-[99px] text-[#171717] font-medium"
+                      className="w-full p-2.5 px-4 bg-[#F6F6F6] hover:bg-[#E8E8E8] rounded-full text-[#171717] font-medium"
                     >
                       {issue}
                     </button>
@@ -454,7 +454,7 @@ export const LiveTrackingView: React.FC = () => {
               </div>
               <button
                 onClick={() => setShowIssueModal(false)}
-                className="w-full h-10 bg-[#171717] text-white rounded-[99px] text-xs font-semibold mt-2"
+                className="w-full h-10 bg-[#171717] text-white rounded-full text-xs font-semibold mt-2 hover:bg-[#05DF00] hover:text-black"
               >
                 Close
               </button>

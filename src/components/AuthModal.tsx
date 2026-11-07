@@ -53,7 +53,7 @@ export const AuthModal: React.FC = () => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xs p-4 animate-in fade-in duration-200">
       <div
-        className="w-full max-w-[380px] bg-white rounded-[99px] p-6 shadow-2xl border border-[#E8E8E8] text-center space-y-4"
+        className="w-full max-w-[380px] bg-white rounded-[28px] p-6 shadow-2xl border border-[#E8E8E8] text-center space-y-4"
         role="dialog"
         aria-modal="true"
         aria-label="Sign in"
@@ -64,7 +64,7 @@ export const AuthModal: React.FC = () => {
           </span>
           <button
             onClick={() => setIsAuthModalOpen(false)}
-            className="w-8 h-8 rounded-[99px] bg-[#F6F6F6] flex items-center justify-center text-[#171717]"
+            className="w-8 h-8 rounded-full bg-[#F6F6F6] flex items-center justify-center text-[#171717]"
           >
             <X className="w-4 h-4" />
           </button>
@@ -79,7 +79,7 @@ export const AuthModal: React.FC = () => {
 
             <div className="text-left space-y-1">
               <label className="text-xs font-bold text-[#171717]">Phone number</label>
-              <div className="flex items-center bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] px-3.5 py-2.5">
+              <div className="flex items-center bg-[#F6F6F6] border border-[#E8E8E8] rounded-full px-3.5 py-2.5">
                 <span className="text-xs font-bold text-[#171717] mr-2 pr-2 border-r border-[#E8E8E8]">
                   🇳🇬 +234
                 </span>
@@ -97,7 +97,7 @@ export const AuthModal: React.FC = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full h-11 bg-[#171717] text-white rounded-[99px] text-xs font-semibold hover:bg-[#FF641B] transition-colors flex items-center justify-center gap-2"
+              className="w-full h-11 bg-[#171717] text-white rounded-full text-xs font-semibold hover:bg-[#05DF00] hover:text-black transition-colors flex items-center justify-center gap-2"
             >
               {isLoading ? (
                 <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -109,7 +109,7 @@ export const AuthModal: React.FC = () => {
             <button
               type="button"
               onClick={handleContinueAsGuest}
-              className="w-full h-10 bg-[#F6F6F6] text-[#171717] rounded-[99px] text-xs font-semibold hover:bg-[#E8E8E8]"
+              className="w-full h-10 bg-[#F6F6F6] text-[#171717] rounded-full text-xs font-semibold hover:bg-[#E8E8E8]"
             >
               Continue as guest
             </button>
@@ -135,7 +135,7 @@ export const AuthModal: React.FC = () => {
                     next[idx] = e.target.value;
                     setOtp(next);
                   }}
-                  className="w-12 h-12 text-center text-lg font-bold bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] focus:outline-hidden focus:border-[#171717]"
+                  className="w-12 h-12 text-center text-lg font-bold bg-[#F6F6F6] border border-[#E8E8E8] rounded-[14px] focus:outline-hidden focus:border-[#171717]"
                 />
               ))}
             </div>
@@ -143,7 +143,7 @@ export const AuthModal: React.FC = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full h-11 bg-[#171717] text-white rounded-[99px] text-xs font-semibold hover:bg-[#FF641B] transition-colors flex items-center justify-center gap-2"
+              className="w-full h-11 bg-[#171717] text-white rounded-full text-xs font-semibold hover:bg-[#05DF00] hover:text-black transition-colors flex items-center justify-center gap-2"
             >
               {isLoading ? (
                 <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -164,7 +164,7 @@ export const AuthModal: React.FC = () => {
 
         {step === 'success' && (
           <div className="py-6 flex flex-col items-center justify-center space-y-2">
-            <div className="w-12 h-12 rounded-[99px] bg-[#12E600] text-[#171717] flex items-center justify-center">
+            <div className="w-12 h-12 rounded-full bg-[#05DF00] text-[#171717] flex items-center justify-center">
               <CheckCircle2 className="w-6 h-6 stroke-[3]" />
             </div>
             <h3 className="text-base font-bold text-[#171717]">Signed In Successfully!</h3>

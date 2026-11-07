@@ -2,187 +2,204 @@ import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { FoodCard } from './FoodCard';
 import { RestaurantCard } from './RestaurantCard';
-import { Search, ChevronRight, ArrowRight, Zap, X } from 'lucide-react';
-
-const CATEGORIES = [
-  { id: 'all', name: 'All', icon: '✨' },
-  { id: 'rice', name: 'Rice', icon: '🍚' },
-  { id: 'swallow', name: 'Swallow', icon: '🥣' },
-  { id: 'grill', name: 'Grills', icon: '🍗' },
-  { id: 'dessert', name: 'Desserts', icon: '🍰' },
-  { id: 'drinks', name: 'Drinks', icon: '🥤' },
-];
+import { ChevronRight, User as UserIcon } from 'lucide-react';
 
 export const HomeTab: React.FC = () => {
   const {
-    activeOrder,
     setIsTrackingOpen,
     dishes,
     restaurants,
-    setIsSearchOpen,
     setCurrentTab,
-    setSelectedRestaurant,
+    setCustomizingDish,
     orderHistory,
     reorderPastOrder,
   } = useApp();
 
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [showPromo, setShowPromo] = useState(true);
-
-  const filteredDishes =
-    selectedCategory === 'all'
-      ? dishes
-      : dishes.filter((d) => d.category === selectedCategory);
 
   const popularDishes = dishes.filter((d) => d.isPopular);
 
+  // Popular orders circular items from screenshot ("Big Rice & Chicken" @ 3500)
+  const popularOrdersList = [
+    { id: 'po-1', name: 'Big Rice &\nChicken', price: 3500, img: 'https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=300&q=80', dish: dishes[0] },
+    { id: 'po-2', name: 'Big Rice &\nChicken', price: 3500, img: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=300&q=80', dish: dishes[1] || dishes[0] },
+    { id: 'po-3', name: 'Big Rice &\nChicken', price: 3500, img: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=300&q=80', dish: dishes[3] || dishes[0] },
+    { id: 'po-4', name: 'Big Rice &\nChicken', price: 3500, img: 'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=300&q=80', dish: dishes[4] || dishes[0] },
+    { id: 'po-5', name: 'Big Rice &\nChicken', price: 3500, img: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=300&q=80', dish: dishes[5] || dishes[0] },
+  ];
+
   return (
-    <div className="pb-32 px-5 space-y-6 pt-3">
-      {/* 1. Search Field Trigger */}
-      <button
-        onClick={() => setIsSearchOpen(true)}
-        className="w-full bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] px-4 py-3 flex items-center justify-between text-[#858585] hover:border-[#171717] transition-colors"
-        aria-label="Search dishes and restaurants"
+    <div className="pb-32 px-5 space-y-6 pt-1">
+      {/* 1. Active Order / Live Courier Tracking Map Card - Strict Screenshot Match */}
+      <div
+        onClick={() => setIsTrackingOpen(true)}
+        className="cursor-pointer rounded-[28px] overflow-hidden border border-[#EAEAEA] bg-white shadow-xs hover:shadow-md transition-all group"
+        role="region"
+        aria-label="Active order tracking preview"
       >
-        <div className="flex items-center gap-2.5">
-          <Search className="w-4 h-4 text-[#858585]" />
-          <span className="text-sm font-medium text-[#858585]">What are you craving?</span>
-        </div>
-        <div className="text-[11px] font-semibold text-[#171717] bg-white border border-[#E8E8E8] px-2.5 py-1 rounded-[99px]">
-          Search
-        </div>
-      </button>
+        {/* Realistic SVG Vector Map with Exact Labels from Screenshot */}
+        <div className="relative h-[168px] w-full bg-[#E7EEF5] overflow-hidden select-none">
+          <svg className="w-full h-full absolute inset-0" viewBox="0 0 400 168" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* Background grid / land zones */}
+            <rect width="400" height="168" fill="#E8EEF5" />
+            
+            {/* Soft blocks & boundaries */}
+            <path d="M-10 40 L160 40 L190 70 L-10 70 Z" fill="#DEE5EE" opacity="0.6" />
+            <path d="M210 10 L390 10 L410 80 L230 80 Z" fill="#E2E9F1" opacity="0.7" />
+            <path d="M-10 100 L120 100 L140 160 L-10 160 Z" fill="#DFE6EF" opacity="0.5" />
 
-      {/* 2. Active Order Tracker Card (Conditional per PRD Section 04: "only if an active order exists") */}
-      {activeOrder && activeOrder.status !== 'delivered' && activeOrder.status !== 'cancelled' && (
-        <div
-          onClick={() => setIsTrackingOpen(true)}
-          className="cursor-pointer bg-[#12E600] text-[#171717] rounded-[99px] p-4 px-5 border border-[#12E600] shadow-sm hover:brightness-95 transition-all flex items-center justify-between gap-3 animate-in fade-in duration-200"
-          role="region"
-          aria-label="Active order tracker"
-        >
-          <div className="min-w-0">
-            <div className="text-xs font-semibold tracking-wide uppercase text-[#171717]/80">
-              {activeOrder.status === 'on_the_way'
-                ? 'Your order is on its way'
-                : activeOrder.status === 'preparing'
-                ? 'Kitchen is preparing food'
-                : 'Order in progress'}
+            {/* Road Network */}
+            {/* Horizontal streets */}
+            <path d="M-10 45 L410 38" stroke="#FFFFFF" strokeWidth="12" strokeLinecap="round" />
+            <path d="M-10 45 L410 38" stroke="#D3DDE8" strokeWidth="1" strokeLinecap="round" />
+
+            <path d="M-10 95 L220 90 L410 105" stroke="#FFFFFF" strokeWidth="14" strokeLinecap="round" />
+            <path d="M-10 95 L220 90 L410 105" stroke="#D3DDE8" strokeWidth="1" strokeLinecap="round" />
+
+            {/* Vertical / diagonal streets */}
+            <path d="M120 -10 L110 180" stroke="#FFFFFF" strokeWidth="8" strokeLinecap="round" />
+            <path d="M220 -10 L195 180" stroke="#FFFFFF" strokeWidth="10" strokeLinecap="round" />
+            <path d="M300 20 L320 180" stroke="#FFFFFF" strokeWidth="9" strokeLinecap="round" />
+
+            {/* Street Names & Labels matching screenshot */}
+            <text x="52" y="90" fill="#6B7280" fontSize="10" fontFamily="sans-serif" fontWeight="500">Sriblysta St</text>
+            <text x="44" y="130" fill="#6B7280" fontSize="10" fontFamily="sans-serif" fontWeight="500">Yanisa Rainisa St</text>
+            <text x="128" y="152" fill="#6B7280" fontSize="10" fontFamily="sans-serif" fontWeight="500">Umanska St</text>
+            <text x="238" y="42" fill="#6B7280" fontSize="9" fontFamily="sans-serif" fontWeight="500" transform="rotate(78 238 42)">alna St</text>
+            <text x="312" y="26" fill="#4B5563" fontSize="9" fontFamily="sans-serif" fontWeight="600">територія...</text>
+            <text x="312" y="36" fill="#4B5563" fontSize="8" fontFamily="sans-serif">підрозділ ЦНАП</text>
+            <text x="318" y="47" fill="#6B7280" fontSize="8" fontFamily="sans-serif">Local government</text>
+
+            {/* Store pin on Sriblysta St */}
+            <circle cx="120" cy="98" r="9" fill="#EF4444" opacity="0.15" />
+            <circle cx="120" cy="98" r="6" fill="#EF4444" />
+            <circle cx="120" cy="98" r="2.5" fill="#FFFFFF" />
+
+            {/* Dashed Route line to destination */}
+            <path
+              d="M270 96 L295 96 L335 125 L345 140 L356 128"
+              stroke="#262626"
+              strokeWidth="3.5"
+              strokeDasharray="4 4"
+              strokeLinecap="round"
+              fill="none"
+            />
+
+            {/* Destination Blue Dot */}
+            <circle cx="356" cy="128" r="5" fill="#2563EB" />
+            <circle cx="356" cy="128" r="9" stroke="#2563EB" strokeWidth="2" fill="none" opacity="0.4" />
+          </svg>
+
+          {/* Courier Pin with Avatar + Blue Badge */}
+          <div className="absolute left-[240px] top-[40px] -translate-x-1/2 flex flex-col items-center pointer-events-none">
+            {/* Courier Avatar with Blue Border */}
+            <div className="w-8 h-8 rounded-full border-2 border-[#1864FF] overflow-hidden shadow-md bg-white">
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=80"
+                alt="Courier"
+                className="w-full h-full object-cover"
+              />
             </div>
-            <div className="text-sm font-bold text-[#171717] truncate mt-0.5">
-              {activeOrder.restaurantName}
+            {/* Pill Tag: 👤 1km 304m */}
+            <div className="mt-1 bg-[#1864FF] text-white text-[10px] font-semibold px-2 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
+              <UserIcon className="w-2.5 h-2.5 fill-white stroke-none" />
+              <span>1km 304m</span>
             </div>
           </div>
-
-          <div className="flex items-center gap-3 shrink-0">
-            <div className="text-right">
-              <div className="text-xl font-extrabold text-[#171717] tabular-nums leading-none">
-                {activeOrder.etaMinutes} min
-              </div>
-              <div className="text-[10px] font-semibold text-[#171717]/70 mt-0.5">ETA</div>
-            </div>
-            <div className="w-9 h-9 rounded-[99px] bg-[#171717] text-white flex items-center justify-center">
-              <ArrowRight className="w-4 h-4" />
-            </div>
-          </div>
         </div>
-      )}
 
-      {/* 3. Contextual Promotion (Compact, contextual, dismissible per PRD) */}
-      {showPromo && (
-        <div className="bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] px-4 py-2.5 flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2 min-w-0">
-            <Zap className="w-4 h-4 text-[#FF641B] shrink-0" />
-            <span className="text-xs font-medium text-[#171717] truncate">
-              Order above ₦10,000 and get free delivery in Lekki & VI
-            </span>
-          </div>
-          <button
-            onClick={() => setShowPromo(false)}
-            className="w-6 h-6 rounded-[99px] flex items-center justify-center text-[#858585] hover:text-[#171717] shrink-0"
-            aria-label="Dismiss promotion"
-          >
-            <X className="w-3.5 h-3.5" />
-          </button>
+        {/* Bottom Green Status Bar strictly matching screenshot */}
+        <div className="bg-[#00DF00] px-5 py-3.5 flex items-center justify-between text-black rounded-b-[28px]">
+          <span className="text-xl font-extrabold tracking-tight text-black">-4min</span>
+          <span className="text-xs font-semibold text-black/85">Currently at Challenge..</span>
         </div>
-      )}
+      </div>
 
-      {/* 4. Food Discovery Carousel ("What are you craving?") */}
+      {/* 2. Banner Section strictly matching screenshot */}
+      <section className="-mx-5 px-5 flex gap-3.5 overflow-x-auto no-scrollbar">
+        <div className="w-[84%] shrink-0 h-[132px] rounded-[24px] bg-[#F5F5F7] flex items-center justify-center border border-black/[0.03]">
+          <span className="text-[32px] font-normal text-[#171717] tracking-tight">Banner</span>
+        </div>
+        <div className="w-[84%] shrink-0 h-[132px] rounded-[24px] bg-[#F5F5F7] flex items-center justify-center border border-black/[0.03]">
+          <span className="text-[32px] font-normal text-[#171717]/40 tracking-tight">Banner</span>
+        </div>
+      </section>
+
+      {/* 3. Section: "Desserts, Entrees, Beverages etc" with "See All" */}
       <section>
-        <div className="flex items-center justify-between mb-3">
-          <h2 className="text-lg font-bold text-[#171717]">What are you craving?</h2>
+        <div className="flex items-center justify-between mb-3 px-0.5">
+          <h2 className="text-[15px] font-medium text-[#1F2937]">Desserts, Entrees, Beverages etc</h2>
           <button
             onClick={() => setCurrentTab('explore')}
-            className="text-xs font-semibold text-[#FF641B] flex items-center gap-0.5 hover:underline"
+            className="text-[13px] text-[#8E8E93] hover:text-[#171717] transition-colors"
           >
-            See all
-            <ChevronRight className="w-3.5 h-3.5" />
+            See All
           </button>
         </div>
 
         {/* Horizontal Carousel */}
-        <div className="flex gap-3.5 overflow-x-auto no-scrollbar -mx-5 px-5 py-1">
+        <div className="flex gap-4 overflow-x-auto no-scrollbar -mx-5 px-5 py-1">
           {popularDishes.map((dish) => (
             <FoodCard key={dish.id} dish={dish} variant="carousel" />
           ))}
         </div>
       </section>
 
-      {/* 5. Popular Categories Filter */}
+      {/* 4. Section: "Popular Orders" with "See All" & Circular Items */}
       <section>
-        <h2 className="text-lg font-bold text-[#171717] mb-3">Cuisine categories</h2>
-        <div className="flex gap-2 overflow-x-auto no-scrollbar -mx-5 px-5">
-          {CATEGORIES.map((cat) => {
-            const isSelected = selectedCategory === cat.id;
-            return (
-              <button
-                key={cat.id}
-                onClick={() => setSelectedCategory(cat.id)}
-                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-[99px] text-xs font-semibold transition-colors shrink-0 ${
-                  isSelected
-                    ? 'bg-[#171717] text-white border border-[#171717]'
-                    : 'bg-[#F6F6F6] text-[#626262] border border-[#E8E8E8] hover:text-[#171717]'
-                }`}
-              >
-                <span>{cat.icon}</span>
-                <span>{cat.name}</span>
-              </button>
-            );
-          })}
+        <div className="flex items-center justify-between mb-3 px-0.5">
+          <h2 className="text-[15px] font-medium text-[#1F2937]">Popular Orders</h2>
+          <button
+            onClick={() => setCurrentTab('explore')}
+            className="text-[13px] text-[#8E8E93] hover:text-[#171717] transition-colors"
+          >
+            See All
+          </button>
+        </div>
+
+        {/* Circular Dishes Horizontal Row */}
+        <div className="flex gap-4 overflow-x-auto no-scrollbar -mx-5 px-5 py-2">
+          {popularOrdersList.map((item) => (
+            <div
+              key={item.id}
+              onClick={() => setCustomizingDish(item.dish)}
+              className="relative w-[76px] shrink-0 flex flex-col items-center cursor-pointer group"
+            >
+              {/* Circular Food Image */}
+              <div className="relative w-[74px] h-[74px] rounded-full overflow-hidden bg-[#B92A11] shadow-2xs group-hover:scale-105 transition-transform duration-200">
+                <img
+                  src={item.img}
+                  alt={item.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Overlapping White Pill Badge: 3500 */}
+              <div className="absolute top-0 right-0 bg-white rounded-full px-1.5 py-0.5 text-[10px] font-bold text-[#171717] shadow-sm border border-black/5">
+                {item.price}
+              </div>
+
+              {/* Two-Line Title Centered */}
+              <div className="text-[11px] font-medium text-[#262626] text-center leading-[1.2] mt-2 whitespace-pre-line">
+                {item.name}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* 6. Filtered Dishes Grid if category is chosen */}
-      {selectedCategory !== 'all' && (
-        <section>
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="text-lg font-bold text-[#171717]">
-              {CATEGORIES.find((c) => c.id === selectedCategory)?.name} selection
-            </h2>
-            <span className="text-xs text-[#858585] tabular-nums">
-              {filteredDishes.length} items
-            </span>
-          </div>
-          <div className="flex flex-col gap-2.5">
-            {filteredDishes.map((dish) => (
-              <FoodCard key={dish.id} dish={dish} variant="compact" />
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* 7. Popular Near You (Restaurants) */}
-      <section>
-        <div className="flex items-center justify-between mb-3">
+      {/* 5. Popular Near You (Restaurants) with 22px Rounded Cards */}
+      <section className="pt-2">
+        <div className="flex items-center justify-between mb-3 px-0.5">
           <div>
-            <h2 className="text-lg font-bold text-[#171717]">Popular near you</h2>
-            <p className="text-xs text-[#858585]">Delivering to Lekki Phase 1</p>
+            <h2 className="text-[15px] font-medium text-[#1F2937]">Popular near you</h2>
+            <p className="text-xs text-[#8E8E93]">Delivering to Lekki Phase 1</p>
           </div>
           <button
             onClick={() => setCurrentTab('explore')}
-            className="text-xs font-semibold text-[#FF641B] flex items-center gap-0.5 hover:underline"
+            className="text-[13px] text-[#8E8E93] hover:text-[#171717] flex items-center gap-0.5"
           >
-            See all
+            See All
             <ChevronRight className="w-3.5 h-3.5" />
           </button>
         </div>
@@ -194,12 +211,12 @@ export const HomeTab: React.FC = () => {
         </div>
       </section>
 
-      {/* 8. Reorder Past Meals (if past orders exist) */}
+      {/* 6. Reorder Past Meals (if past orders exist) with clean 22px radius */}
       {orderHistory.length > 0 && (
-        <section className="bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] p-4 px-5">
+        <section className="bg-[#F8F9FA] border border-[#EBEBEB] rounded-[22px] p-4 px-5">
           <div className="flex items-center justify-between">
             <div>
-              <div className="text-xs text-[#858585]">Order again</div>
+              <div className="text-xs text-[#8E8E93]">Order again</div>
               <div className="text-sm font-bold text-[#171717]">
                 {orderHistory[0].restaurantName}
               </div>
@@ -209,7 +226,7 @@ export const HomeTab: React.FC = () => {
             </div>
             <button
               onClick={() => reorderPastOrder(orderHistory[0])}
-              className="px-4 py-2 bg-[#171717] text-white text-xs font-semibold rounded-[99px] hover:bg-[#FF641B] transition-colors"
+              className="px-4 py-2 bg-[#171717] text-white text-xs font-semibold rounded-full hover:bg-[#05DF00] hover:text-black transition-colors"
             >
               Reorder · ₦{orderHistory[0].total.toLocaleString()}
             </button>

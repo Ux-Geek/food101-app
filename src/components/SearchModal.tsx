@@ -40,7 +40,7 @@ export const SearchModal: React.FC = () => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xs animate-in fade-in duration-150">
       <div
-        className="w-full max-w-[440px] h-full sm:h-[94vh] bg-white sm:rounded-[99px] shadow-2xl flex flex-col overflow-hidden"
+        className="w-full max-w-[440px] h-full sm:h-[94vh] bg-white sm:rounded-[36px] shadow-2xl flex flex-col overflow-hidden"
         role="dialog"
         aria-modal="true"
         aria-label="Search food and restaurants"
@@ -55,7 +55,7 @@ export const SearchModal: React.FC = () => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search food, restaurants, or cravings..."
-              className="w-full bg-[#F6F6F6] border border-[#E8E8E8] rounded-[99px] pl-10 pr-9 py-2.5 text-sm text-[#171717] placeholder-[#858585] focus:outline-hidden focus:border-[#171717]"
+              className="w-full bg-[#F6F6F6] border border-[#E8E8E8] rounded-full pl-10 pr-9 py-2.5 text-sm text-[#171717] placeholder-[#858585] focus:outline-hidden focus:border-[#171717]"
             />
             {searchTerm && (
               <button
@@ -70,7 +70,7 @@ export const SearchModal: React.FC = () => {
 
           <button
             onClick={() => setIsSearchOpen(false)}
-            className="text-xs font-semibold text-[#171717] hover:text-[#FF641B]"
+            className="text-xs font-semibold text-[#171717] hover:text-[#05DF00]"
           >
             Cancel
           </button>
@@ -79,10 +79,10 @@ export const SearchModal: React.FC = () => {
         {/* Segmented Results Tabs */}
         {searchTerm && (
           <div className="px-5 py-2.5 bg-[#F6F6F6] border-b border-[#E8E8E8] flex items-center justify-between">
-            <div className="flex items-center gap-1 bg-white border border-[#E8E8E8] rounded-[99px] p-1">
+            <div className="flex items-center gap-1 bg-white border border-[#E8E8E8] rounded-full p-1">
               <button
                 onClick={() => setActiveTab('all')}
-                className={`px-3 py-1 rounded-[99px] text-xs font-semibold transition-colors ${
+                className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors ${
                   activeTab === 'all'
                     ? 'bg-[#171717] text-white'
                     : 'text-[#626262] hover:text-[#171717]'
@@ -92,7 +92,7 @@ export const SearchModal: React.FC = () => {
               </button>
               <button
                 onClick={() => setActiveTab('dishes')}
-                className={`px-3 py-1 rounded-[99px] text-xs font-semibold transition-colors ${
+                className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors ${
                   activeTab === 'dishes'
                     ? 'bg-[#171717] text-white'
                     : 'text-[#626262] hover:text-[#171717]'
@@ -102,7 +102,7 @@ export const SearchModal: React.FC = () => {
               </button>
               <button
                 onClick={() => setActiveTab('restaurants')}
-                className={`px-3 py-1 rounded-[99px] text-xs font-semibold transition-colors ${
+                className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors ${
                   activeTab === 'restaurants'
                     ? 'bg-[#171717] text-white'
                     : 'text-[#626262] hover:text-[#171717]'
@@ -114,9 +114,9 @@ export const SearchModal: React.FC = () => {
 
             <button
               onClick={() => setUnder5k((v) => !v)}
-              className={`px-2.5 py-1 rounded-[99px] text-xs font-semibold border transition-colors ${
+              className={`px-2.5 py-1 rounded-full text-xs font-semibold border transition-colors ${
                 under5k
-                  ? 'bg-[#FF641B] text-white border-[#FF641B]'
+                  ? 'bg-[#05DF00] text-black border-[#05DF00]'
                   : 'bg-white text-[#858585] border-[#E8E8E8]'
               }`}
             >
@@ -140,7 +140,7 @@ export const SearchModal: React.FC = () => {
                     <button
                       key={item}
                       onClick={() => setSearchTerm(item)}
-                      className="px-3.5 py-1.5 bg-[#F6F6F6] border border-[#E8E8E8] text-xs font-medium text-[#171717] rounded-[99px] hover:border-[#171717]"
+                      className="px-3.5 py-1.5 bg-[#F6F6F6] border border-[#E8E8E8] text-xs font-medium text-[#171717] rounded-full hover:border-[#171717]"
                     >
                       {item}
                     </button>
@@ -151,7 +151,7 @@ export const SearchModal: React.FC = () => {
               {/* Trending */}
               <div>
                 <div className="flex items-center gap-1.5 text-xs font-bold text-[#858585] uppercase tracking-wide mb-2.5">
-                  <TrendingUp className="w-3.5 h-3.5 text-[#FF641B]" />
+                  <TrendingUp className="w-3.5 h-3.5 text-[#05DF00]" />
                   <span>Trending in Lagos</span>
                 </div>
                 <div className="flex flex-wrap gap-2">
@@ -159,7 +159,7 @@ export const SearchModal: React.FC = () => {
                     <button
                       key={tag}
                       onClick={() => setSearchTerm(tag)}
-                      className="px-3.5 py-1.5 bg-[#F6F6F6] border border-[#E8E8E8] text-xs font-medium text-[#171717] rounded-[99px] hover:border-[#171717]"
+                      className="px-3.5 py-1.5 bg-[#F6F6F6] border border-[#E8E8E8] text-xs font-medium text-[#171717] rounded-full hover:border-[#171717]"
                     >
                       {tag}
                     </button>

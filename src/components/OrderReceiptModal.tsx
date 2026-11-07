@@ -10,7 +10,7 @@ export const OrderReceiptModal: React.FC = () => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xs p-4 animate-in fade-in duration-200">
       <div
-        className="w-full max-w-[420px] bg-white rounded-[99px] p-6 shadow-2xl border border-[#E8E8E8] max-h-[90vh] overflow-y-auto no-scrollbar space-y-4"
+        className="w-full max-w-[420px] bg-white rounded-[28px] p-6 shadow-2xl border border-[#E8E8E8] max-h-[90vh] overflow-y-auto no-scrollbar space-y-4"
         role="dialog"
         aria-modal="true"
         aria-label="Order Receipt"
@@ -25,14 +25,14 @@ export const OrderReceiptModal: React.FC = () => {
           </div>
           <button
             onClick={() => setViewingReceiptOrder(null)}
-            className="w-8 h-8 rounded-[99px] bg-[#F6F6F6] flex items-center justify-center text-[#171717]"
+            className="w-8 h-8 rounded-full bg-[#F6F6F6] flex items-center justify-center text-[#171717]"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Restaurant & Address */}
-        <div className="bg-[#F6F6F6] rounded-[99px] p-4 text-xs space-y-1">
+        <div className="bg-[#F6F6F6] rounded-[20px] p-4 text-xs space-y-1">
           <div className="font-bold text-[#171717]">{viewingReceiptOrder.restaurantName}</div>
           <div className="text-[#626262]">Delivered to {viewingReceiptOrder.deliveryAddress.fullAddress}</div>
           <div className="text-[#858585]">Paid via {viewingReceiptOrder.paymentMethod.replace('_', ' ')}</div>
@@ -61,7 +61,7 @@ export const OrderReceiptModal: React.FC = () => {
         </div>
 
         {/* Financial Breakdown */}
-        <div className="bg-[#F6F6F6] rounded-[99px] p-4 space-y-1.5 text-xs">
+        <div className="bg-[#F6F6F6] rounded-[20px] p-4 space-y-1.5 text-xs">
           <div className="flex justify-between text-[#626262]">
             <span>Subtotal</span>
             <span className="tabular-nums font-semibold">₦{viewingReceiptOrder.subtotal.toLocaleString()}</span>
@@ -87,13 +87,13 @@ export const OrderReceiptModal: React.FC = () => {
               setViewingReceiptOrder(null);
               reorderPastOrder(viewingReceiptOrder);
             }}
-            className="w-full h-11 bg-[#171717] text-white text-xs font-semibold rounded-[99px] hover:bg-[#FF641B] transition-colors"
+            className="w-full h-11 bg-[#171717] text-white text-xs font-semibold rounded-full hover:bg-[#FF641B] transition-colors"
           >
             Reorder these items
           </button>
           <button
             onClick={() => setViewingReceiptOrder(null)}
-            className="w-full h-10 bg-[#F6F6F6] text-[#171717] text-xs font-semibold rounded-[99px]"
+            className="w-full h-10 bg-[#F6F6F6] text-[#171717] text-xs font-semibold rounded-full"
           >
             Close receipt
           </button>

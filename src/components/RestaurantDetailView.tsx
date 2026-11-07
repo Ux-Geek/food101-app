@@ -30,7 +30,7 @@ export const RestaurantDetailView: React.FC = () => {
       <div className="sticky top-0 z-20 bg-white/95 backdrop-blur-xs border-b border-[#E8E8E8] px-5 py-3 flex items-center justify-between">
         <button
           onClick={() => setSelectedRestaurant(null)}
-          className="w-10 h-10 rounded-[99px] bg-[#F6F6F6] border border-[#E8E8E8] flex items-center justify-center text-[#171717] hover:bg-[#E8E8E8] transition-colors"
+          className="w-10 h-10 rounded-full bg-[#F6F6F6] border border-[#E8E8E8] flex items-center justify-center text-[#171717] hover:bg-[#E8E8E8] transition-colors"
           aria-label="Back to browse"
         >
           <ArrowLeft className="w-4 h-4" />
@@ -45,14 +45,14 @@ export const RestaurantDetailView: React.FC = () => {
             onClick={() => {
               showToast('Link copied to clipboard');
             }}
-            className="w-10 h-10 rounded-[99px] bg-[#F6F6F6] border border-[#E8E8E8] flex items-center justify-center text-[#171717] hover:bg-[#E8E8E8]"
+            className="w-10 h-10 rounded-full bg-[#F6F6F6] border border-[#E8E8E8] flex items-center justify-center text-[#171717] hover:bg-[#E8E8E8]"
             aria-label="Share restaurant"
           >
             <Share2 className="w-4 h-4" />
           </button>
           <button
             onClick={() => toggleFavouriteRestaurant(selectedRestaurant.id)}
-            className={`w-10 h-10 rounded-[99px] flex items-center justify-center transition-colors ${
+            className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
               isFav ? 'bg-[#FF641B] text-white' : 'bg-[#F6F6F6] border border-[#E8E8E8] text-[#171717]'
             }`}
             aria-label="Save favourite"
@@ -64,8 +64,8 @@ export const RestaurantDetailView: React.FC = () => {
 
       {/* Restaurant Header Information */}
       <div className="px-5 pt-3">
-        {/* Visual Hero Image with 99px radius */}
-        <div className="w-full h-44 rounded-[99px] bg-[#F6F6F6] border border-[#E8E8E8] overflow-hidden">
+        {/* Visual Hero Image with 24px radius */}
+        <div className="w-full h-48 rounded-[24px] bg-[#F6F6F6] border border-[#E8E8E8] overflow-hidden">
           <img
             src={selectedRestaurant.imageUrl}
             alt={selectedRestaurant.name}
@@ -78,7 +78,7 @@ export const RestaurantDetailView: React.FC = () => {
           <div className="flex items-center justify-between">
             <h1 className="text-xl font-bold text-[#171717]">{selectedRestaurant.name}</h1>
             <div className="flex items-center gap-1 text-xs font-bold text-[#171717]">
-              <Star className="w-4 h-4 fill-[#FF641B] text-[#FF641B]" />
+              <Star className="w-4 h-4 fill-[#F59E0B] text-[#F59E0B]" />
               <span>{selectedRestaurant.rating}</span>
               <span className="text-[#858585] font-normal">({selectedRestaurant.reviewCount})</span>
             </div>
@@ -103,7 +103,7 @@ export const RestaurantDetailView: React.FC = () => {
               ₦{selectedRestaurant.deliveryFee.toLocaleString()} delivery
             </span>
             <span aria-hidden="true">·</span>
-            <span className="text-[#12E600] font-bold">Open now</span>
+            <span className="text-[#05DF00] font-bold">Open now</span>
           </div>
         </div>
 
@@ -115,7 +115,7 @@ export const RestaurantDetailView: React.FC = () => {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-3.5 py-1.5 rounded-[99px] text-xs font-semibold whitespace-nowrap capitalize transition-colors ${
+                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap capitalize transition-colors ${
                   isSelected
                     ? 'bg-[#171717] text-white border border-[#171717]'
                     : 'bg-[#F6F6F6] text-[#626262] border border-[#E8E8E8] hover:text-[#171717]'
