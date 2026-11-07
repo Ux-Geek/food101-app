@@ -1,0 +1,4 @@
+Target dependency graph (2 targets)
+Target 'AllExcludingTests' in project 'Aggregate'
+➜ Explicit dependency on target 'Food101-product' in project 'Food101'
+Target 'Food101-product' in project 'Food101' (no dependencies)
